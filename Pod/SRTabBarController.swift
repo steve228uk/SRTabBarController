@@ -8,10 +8,13 @@
 
 import Cocoa
 
-public class SRTabBarController: NSViewController, NSTabViewDelegate {
+public class SRTabBarController: NSViewController, NSTabViewDelegate, SRTabItemDelegate {
     
     /// The tab bar
     public var tabBar: SRTabBar?
+    
+    /// The tab view that is being used behind the scenes
+    private var tabView: NSTabView?
     
     /// The background color of the tab bar
     @IBInspectable public var barBackgroundColor: NSColor = NSColor.blackColor() {
@@ -37,7 +40,6 @@ public class SRTabBarController: NSViewController, NSTabViewDelegate {
     
     required public init?(coder: NSCoder) {
         super.init(coder: coder)
-        
         loadViewFromNib()
     }
     
@@ -63,6 +65,7 @@ public class SRTabBarController: NSViewController, NSTabViewDelegate {
             }
             
             tabBar = view.tabBar
+            tabView = view.tabView
             self.view = view
         }
         
@@ -93,6 +96,11 @@ public class SRTabBarController: NSViewController, NSTabViewDelegate {
     
     public override func prepareForSegue(segue: NSStoryboardSegue, sender: AnyObject?) {
         
+        guard let id = segue.identifier else {
+            print("Identifier not set")
+            return
+        }
+        
         guard let tabView = view as? SRTabView else {
             print("View is not a `SRTabView`")
             return
@@ -103,8 +111,19 @@ public class SRTabBarController: NSViewController, NSTabViewDelegate {
             return
         }
         
+        guard let index = Int(id.stringByReplacingOccurrencesOfString("tab_", withString: "")) else {
+            print("Could not get index from identifier")
+            return
+        }
+        
         let tabItem = NSTabViewItem(viewController: vc)
         tabView.tabView.addTabViewItem(tabItem)
+        
+        
+        let item = SRTabItem(index: index, viewController: vc)
+        item.title = tabItem.viewController!.title!
+        item.delegate = self
+        tabBar?.items.append(item)
     }
     
     
@@ -112,6 +131,12 @@ public class SRTabBarController: NSViewController, NSTabViewDelegate {
     
     public func tabView(tabView: NSTabView, didSelectTabViewItem tabViewItem: NSTabViewItem?) {
         print(tabViewItem)
+    }
+    
+    // MARK; - SRTabItemDelegate
+    
+    func tabIndexShouldChangeTo(index: Int) {
+        tabView?.selectTabViewItemAtIndex(index)
     }
     
 }

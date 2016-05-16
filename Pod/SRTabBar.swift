@@ -36,6 +36,19 @@ public class SRTabBar: NSView {
         }
     }
     
+    public var items = [NSView]() {
+        didSet {
+            stack?.removeFromSuperview()
+            stack = NSStackView(views: items)
+            addSubview(stack!)
+        }
+    }
+    
+    
+    /// The stack view that is added to the bar.
+    /// This view contains all of the items.
+    private var stack: NSStackView?
+    
     public required init?(coder: NSCoder) {
         super.init(coder: coder)
         
