@@ -16,6 +16,9 @@ public class SRTabBarController: NSViewController, NSTabViewDelegate, SRTabItemD
     /// The tab view that is being used behind the scenes
     private var tabView: NSTabView?
     
+    /// The currently selected tab index
+    public var currentIndex = 0
+    
     /// The background color of the tab bar
     @IBInspectable public var barBackgroundColor: NSColor = NSColor.blackColor() {
         didSet {
@@ -72,6 +75,15 @@ public class SRTabBarController: NSViewController, NSTabViewDelegate, SRTabItemD
     }
     
     
+    /**
+     Select the tab item at the specified index
+     
+     - parameter index: The index to select
+     */
+    public func selectTabAtIndex(index: Int) {
+        tabView?.selectTabViewItemAtIndex(index)
+    }
+    
     
     // MARK: - Load Tabs
     
@@ -124,7 +136,7 @@ public class SRTabBarController: NSViewController, NSTabViewDelegate, SRTabItemD
      - parameter item: The tab item to be added
      */
     public func addTabItem(item: SRTabItem) {
-    
+        
         guard let vc = item.viewController else {
             print("View controller not set on tab item")
             return
@@ -132,7 +144,7 @@ public class SRTabBarController: NSViewController, NSTabViewDelegate, SRTabItemD
         
         let tabItem = NSTabViewItem(viewController: vc)
         tabView?.addTabViewItem(tabItem)
-
+        
         item.delegate = self
         tabBar?.items.append(item)
     }
@@ -141,8 +153,13 @@ public class SRTabBarController: NSViewController, NSTabViewDelegate, SRTabItemD
     // MARK: - NSTabViewDelegate
     
     public func tabView(tabView: NSTabView, didSelectTabViewItem tabViewItem: NSTabViewItem?) {
-        // TODO: Hook up SRTabBarDelegate
+        guard let item = tabViewItem else {
+            return
+        }
+        
+        currentIndex = tabView.indexOfTabViewItem(item)
     }
+    
     
     // MARK; - SRTabItemDelegate
     
