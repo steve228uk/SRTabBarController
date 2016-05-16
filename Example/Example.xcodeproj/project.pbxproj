@@ -15,8 +15,8 @@
 		28DC76A61CE8A6F90054FEC4 /* SRTabView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28DC76A51CE8A6F90054FEC4 /* SRTabView.xib */; };
 		28DC76A81CE8A7B80054FEC4 /* SRTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28DC76A71CE8A7B80054FEC4 /* SRTabView.swift */; };
 		28DC76AA1CE8A7CA0054FEC4 /* SRTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28DC76A91CE8A7CA0054FEC4 /* SRTabBar.swift */; };
-		28DC76AC1CEA117E0054FEC4 /* SRTabBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28DC76AB1CEA117E0054FEC4 /* SRTabBarItem.swift */; };
 		28DC76AE1CEA1EDF0054FEC4 /* SRTabSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28DC76AD1CEA1EDF0054FEC4 /* SRTabSegue.swift */; };
+		28DC76B01CEA24EC0054FEC4 /* SRTabBarDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28DC76AF1CEA24EC0054FEC4 /* SRTabBarDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,8 +30,8 @@
 		28DC76A51CE8A6F90054FEC4 /* SRTabView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SRTabView.xib; path = ../../Pod/SRTabView.xib; sourceTree = "<group>"; };
 		28DC76A71CE8A7B80054FEC4 /* SRTabView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SRTabView.swift; path = ../../Pod/SRTabView.swift; sourceTree = "<group>"; };
 		28DC76A91CE8A7CA0054FEC4 /* SRTabBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SRTabBar.swift; path = ../../Pod/SRTabBar.swift; sourceTree = "<group>"; };
-		28DC76AB1CEA117E0054FEC4 /* SRTabBarItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SRTabBarItem.swift; path = ../../Pod/SRTabBarItem.swift; sourceTree = "<group>"; };
 		28DC76AD1CEA1EDF0054FEC4 /* SRTabSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SRTabSegue.swift; path = ../../Pod/SRTabSegue.swift; sourceTree = "<group>"; };
+		28DC76AF1CEA24EC0054FEC4 /* SRTabBarDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SRTabBarDelegate.swift; path = ../../Pod/SRTabBarDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,8 +81,8 @@
 				28DC76A51CE8A6F90054FEC4 /* SRTabView.xib */,
 				28DC76A71CE8A7B80054FEC4 /* SRTabView.swift */,
 				28DC76A91CE8A7CA0054FEC4 /* SRTabBar.swift */,
-				28DC76AB1CEA117E0054FEC4 /* SRTabBarItem.swift */,
 				28DC76AD1CEA1EDF0054FEC4 /* SRTabSegue.swift */,
+				28DC76AF1CEA24EC0054FEC4 /* SRTabBarDelegate.swift */,
 			);
 			name = Pod;
 			sourceTree = "<group>";
@@ -159,8 +159,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				28DC76941CE8A4EF0054FEC4 /* ViewController.swift in Sources */,
-				28DC76AC1CEA117E0054FEC4 /* SRTabBarItem.swift in Sources */,
 				28DC76A81CE8A7B80054FEC4 /* SRTabView.swift in Sources */,
+				28DC76B01CEA24EC0054FEC4 /* SRTabBarDelegate.swift in Sources */,
 				28DC76A21CE8A5520054FEC4 /* SRTabBarController.swift in Sources */,
 				28DC76AA1CE8A7CA0054FEC4 /* SRTabBar.swift in Sources */,
 				28DC76AE1CEA1EDF0054FEC4 /* SRTabSegue.swift in Sources */,

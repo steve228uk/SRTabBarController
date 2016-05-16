@@ -674,6 +674,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </view>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="color" keyPath="barBackgroundColor">
+                            <color key="value" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
                     <connections>
                         <segue destination="hfN-tr-A8e" kind="custom" identifier="tab_0" customClass="SRTabSegue" customModule="Example" customModuleProvider="target" id="XHe-ar-uLl"/>
                         <segue destination="ggA-Nm-8fo" kind="custom" identifier="tab_1" customClass="SRTabSegue" customModule="Example" customModuleProvider="target" id="6wP-Ri-5zj"/>

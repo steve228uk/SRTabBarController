@@ -10,14 +10,35 @@ import Cocoa
 
 public class SRTabBarController: NSViewController, NSTabViewDelegate {
     
+    /// The tab bar
+    public var tabBar: SRTabBar?
+    
+    /// The background color of the tab bar
+    @IBInspectable public var barBackgroundColor: NSColor = NSColor.blackColor() {
+        didSet {
+            tabBar?.backgroundColor = barBackgroundColor
+        }
+    }
+    
+    /// The text color of the tab bar
+    @IBInspectable public var barTextColor: NSColor = NSColor.whiteColor() {
+        didSet {
+            tabBar?.textColor = barTextColor
+        }
+    }
+    
+    /// The tint color of the tab bar
+    @IBInspectable public var barTintColor: NSColor = NSColor.yellowColor() {
+        didSet {
+            tabBar?.tintColor = barTintColor
+        }
+    }
+    
+    
     required public init?(coder: NSCoder) {
         super.init(coder: coder)
         
-        guard let v = loadViewFromNib() else {
-            fatalError("SRTabBarController failed to load")
-        }
-        
-        view = v
+        loadViewFromNib()
     }
     
     public override func viewDidLoad() {
@@ -27,10 +48,8 @@ public class SRTabBarController: NSViewController, NSTabViewDelegate {
     
     /**
      Load the view from the NIB
-     
-     - returns: The view that's been loaded
      */
-    private func loadViewFromNib() -> NSView? {
+    private func loadViewFromNib() {
         var nibObjects: NSArray?
         NSBundle(forClass: SRTabBarController.self).loadNibNamed("SRTabView", owner: self, topLevelObjects: &nibObjects)
         
@@ -42,10 +61,11 @@ public class SRTabBarController: NSViewController, NSTabViewDelegate {
             guard let view = object as? SRTabView else {
                 continue
             }
-            return view
+            
+            tabBar = view.tabBar
+            self.view = view
         }
         
-        return nil
     }
     
     

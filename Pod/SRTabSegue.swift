@@ -10,6 +10,9 @@ import Cocoa
 
 public class SRTabSegue: NSStoryboardSegue {
 
+    /**
+     This is empty so OS X doesn't shout at us for not overriding anything
+     */
     public override func perform() {
         print("Loading \(identifier)")
     }
