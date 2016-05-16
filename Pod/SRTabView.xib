@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="10116"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="SRTabBarController" customModule="Example" customModuleProvider="target"/>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView id="c22-O7-iKe" customClass="SRTabView" customModule="Example" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="480" height="272"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <customView translatesAutoresizingMaskIntoConstraints="NO" id="igQ-dY-iRN" customClass="SRTabBar" customModule="Example" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="0.0" width="480" height="49"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="49" id="BTj-0q-mN5"/>
+                    </constraints>
+                </customView>
+                <tabView drawsBackground="NO" allowsTruncatedLabels="NO" type="noTabsNoBorder" translatesAutoresizingMaskIntoConstraints="NO" id="Jv6-VY-NzA">
+                    <rect key="frame" x="0.0" y="0.0" width="480" height="272"/>
+                    <font key="font" metaFont="system"/>
+                    <tabViewItems/>
+                    <connections>
+                        <outlet property="delegate" destination="-2" id="zGP-4L-QQW"/>
+                    </connections>
+                </tabView>
+            </subviews>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="igQ-dY-iRN" secondAttribute="bottom" id="22Y-uS-ouu"/>
+                <constraint firstItem="Jv6-VY-NzA" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="2AH-bl-CAB"/>
+                <constraint firstItem="Jv6-VY-NzA" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="AHY-ZH-yJk"/>
+                <constraint firstAttribute="trailing" secondItem="Jv6-VY-NzA" secondAttribute="trailing" id="XXU-eO-agx"/>
+                <constraint firstAttribute="trailing" secondItem="igQ-dY-iRN" secondAttribute="trailing" id="aFa-NZ-hjW"/>
+                <constraint firstAttribute="bottom" secondItem="Jv6-VY-NzA" secondAttribute="bottom" id="dJQ-dY-DK4"/>
+                <constraint firstItem="igQ-dY-iRN" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="vBB-hn-p74"/>
+            </constraints>
+            <connections>
+                <outlet property="tabBar" destination="igQ-dY-iRN" id="nv6-AW-Ifq"/>
+                <outlet property="tabView" destination="Jv6-VY-NzA" id="bbH-I1-IT3"/>
+            </connections>
+        </customView>
+    </objects>
+</document>
