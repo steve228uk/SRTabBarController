@@ -40,7 +40,14 @@ public class SRTabBar: NSView {
         didSet {
             stack?.removeFromSuperview()
             stack = NSStackView(views: items)
+            stack?.spacing = 15
+            stack?.distribution = .EqualCentering
             addSubview(stack!)
+            
+            let centerX = NSLayoutConstraint(item: stack!, attribute: .CenterX, relatedBy: .Equal, toItem: self, attribute: .CenterX, multiplier: 1, constant: 0)
+            let centerY = NSLayoutConstraint(item: stack!, attribute: .CenterY, relatedBy: .Equal, toItem: self, attribute: .CenterY, multiplier: 1, constant: 0)
+            
+            addConstraints([centerX, centerY])
         }
     }
     

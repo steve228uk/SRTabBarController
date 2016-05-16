@@ -44,6 +44,8 @@ public class SRTabItem: NSButton {
     
     func buttonPressed() {
         delegate?.tabIndexShouldChangeTo(index)
+        
+        // TODO: Set the current button to active
     }
     
 }
