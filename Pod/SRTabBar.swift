@@ -36,11 +36,13 @@ public class SRTabBar: NSView {
         }
     }
     
-    public var items = [NSView]() {
+    /// The items that are displayed on the tab bar.
+    /// When set, the tabs will be added to a stack view.
+    public var items = [SRTabItem]() {
         didSet {
             stack?.removeFromSuperview()
             stack = NSStackView(views: items)
-            stack?.spacing = 15
+            stack?.spacing = 45
             stack?.distribution = .EqualCentering
             addSubview(stack!)
             

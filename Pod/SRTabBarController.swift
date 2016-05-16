@@ -101,11 +101,6 @@ public class SRTabBarController: NSViewController, NSTabViewDelegate, SRTabItemD
             return
         }
         
-        guard let tabView = view as? SRTabView else {
-            print("View is not a `SRTabView`")
-            return
-        }
-        
         guard let vc = segue.destinationController as? NSViewController else {
             print("Could not load destination view controller")
             return
@@ -116,12 +111,28 @@ public class SRTabBarController: NSViewController, NSTabViewDelegate, SRTabItemD
             return
         }
         
-        let tabItem = NSTabViewItem(viewController: vc)
-        tabView.tabView.addTabViewItem(tabItem)
-        
-        
+        // Add the tab item to our tab bar
         let item = SRTabItem(index: index, viewController: vc)
-        item.title = tabItem.viewController!.title!
+        item.image = NSImage(named: "Search")
+        addTabItem(item)
+        
+    }
+    
+    /**
+     Add a tab item to the NSTabView and the SRTabBar
+     
+     - parameter item: The tab item to be added
+     */
+    public func addTabItem(item: SRTabItem) {
+    
+        guard let vc = item.viewController else {
+            print("View controller not set on tab item")
+            return
+        }
+        
+        let tabItem = NSTabViewItem(viewController: vc)
+        tabView?.addTabViewItem(tabItem)
+
         item.delegate = self
         tabBar?.items.append(item)
     }
@@ -130,7 +141,7 @@ public class SRTabBarController: NSViewController, NSTabViewDelegate, SRTabItemD
     // MARK: - NSTabViewDelegate
     
     public func tabView(tabView: NSTabView, didSelectTabViewItem tabViewItem: NSTabViewItem?) {
-        print(tabViewItem)
+        // TODO: Hook up SRTabBarDelegate
     }
     
     // MARK; - SRTabItemDelegate

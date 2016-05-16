@@ -20,13 +20,24 @@ public class SRTabItem: NSButton {
     var viewController: NSViewController?
     
     
-    // MARK : - Initializers
+    // MARK: - Initializers
     
     init(index: Int, viewController: NSViewController) {
-        super.init(frame: NSMakeRect(0,0,30,30))
+        super.init(frame: NSZeroRect)
         
         self.index = index
         self.viewController = viewController
+        bordered = false
+        imagePosition = .ImageAbove
+        
+        if let title = viewController.title {
+            attributedTitle = NSAttributedString(string: title, attributes: [
+                NSFontAttributeName: NSFont.systemFontOfSize(10),
+                NSForegroundColorAttributeName: NSColor.whiteColor()
+            ])
+        }
+        
+        (cell as? NSButtonCell)?.highlightsBy = .ContentsCellMask
     }
     
     required public init?(coder: NSCoder) {
