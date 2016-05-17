@@ -13,9 +13,11 @@ class ViewController: SRTabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tabBarLocation = .Left
+        tabBarLocation = .Right
         tabBar?.translucent = true
         tabBar?.material = .UltraDark
+//        tabBar?.material = .Titlebar
+        tabBar?.blendingMode = .WithinWindow
     }
 
 }

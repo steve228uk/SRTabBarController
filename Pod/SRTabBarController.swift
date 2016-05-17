@@ -49,6 +49,13 @@ public class SRTabBarController: NSViewController, NSTabViewDelegate, SRTabItemD
         }
     }
     
+    /// The spacing between items on the tab bar
+    @IBInspectable public var itemSpacing: CGFloat = 25 {
+        didSet {
+            tabBar?.itemSpacing = itemSpacing
+        }
+    }
+    
     
     required public init?(coder: NSCoder) {
         super.init(coder: coder)
@@ -83,6 +90,7 @@ public class SRTabBarController: NSViewController, NSTabViewDelegate, SRTabItemD
             tabBar?.backgroundColor = barBackgroundColor
             tabBar?.tintColor = barTintColor
             tabBar?.textColor = barTextColor
+            tabBar?.itemSpacing = itemSpacing
         }
         
     }

@@ -30,6 +30,13 @@ public class SRTabBar: NSVisualEffectView {
     /// The colour used for inactive items
     public var textColor = NSColor.whiteColor()
     
+    /// Spacing between the items
+    public var itemSpacing: CGFloat = 25 {
+        didSet {
+            stack?.spacing = itemSpacing
+        }
+    }
+    
     /// The items that are displayed on the tab bar.
     /// When set, the tabs will be added to a stack view.
     public var items = [SRTabItem]() {
@@ -37,11 +44,11 @@ public class SRTabBar: NSVisualEffectView {
             
             stack?.removeFromSuperview()
             stack = NSStackView(views: items)
-            
+            Swift.print(itemSpacing)
+            stack?.spacing = itemSpacing
             addSubview(stack!)
             
             if [SRTabLocation.Top, SRTabLocation.Bottom].contains(location) {
-                stack?.spacing = 45
                 stack?.distribution = .EqualCentering
                 
                 let centerX = NSLayoutConstraint(item: stack!, attribute: .CenterX, relatedBy: .Equal, toItem: self, attribute: .CenterX, multiplier: 1, constant: 0)
@@ -49,8 +56,6 @@ public class SRTabBar: NSVisualEffectView {
                 
                 addConstraints([centerX, centerY])
             } else {
-                
-                stack?.spacing = 20
                 stack?.distribution = .FillEqually
                 stack?.alignment = .CenterX
                 
