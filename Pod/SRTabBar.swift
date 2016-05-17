@@ -8,12 +8,12 @@
 
 import Cocoa
 
-public class SRTabBar: NSView {
+public class SRTabBar: NSVisualEffectView {
 
     /// Whether or not the tab bar is translucent
     public var translucent = false {
         didSet {
-            // Set the translucency here
+            setNeedsDisplayInRect(bounds)
         }
     }
     
@@ -24,8 +24,10 @@ public class SRTabBar: NSView {
         }
     }
     
+    /// The colour used for active items
     public var tintColor = NSColor.yellowColor()
     
+    /// The colour used for inactive items
     public var textColor = NSColor.whiteColor()
     
     /// The items that are displayed on the tab bar.
@@ -64,12 +66,9 @@ public class SRTabBar: NSView {
     
     internal var location: SRTabLocation = .Bottom
     
-    var fxView: NSVisualEffectView?
-    
     /// The stack view that is added to the bar.
     /// This view contains all of the items.
     private var stack: NSStackView?
-    
     
     
     // MARK: - Methods
@@ -77,28 +76,21 @@ public class SRTabBar: NSView {
     public override func drawRect(dirtyRect: NSRect) {
         super.drawRect(dirtyRect)
         
-        backgroundColor.setFill()
+        if translucent {
+            NSColor.clearColor().setFill()
+        } else {
+            backgroundColor.setFill()
+        }
+        
         NSRectFill(dirtyRect)
     }
     
-    public required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        
-//        fxView = NSVisualEffectView(frame: bounds)
-//        fxView?.blendingMode = .BehindWindow
-//        fxView?.material = .Dark
-//        addSubview(fxView!)
-//        
-//        let horizontal = NSLayoutConstraint.constraintsWithVisualFormat("H:|[subview]|", options: .DirectionLeadingToTrailing, metrics: nil, views: ["subview": fxView!])
-//        let vertical = NSLayoutConstraint.constraintsWithVisualFormat("V:|[subview]|", options: .DirectionLeadingToTrailing, metrics: nil, views: ["subview": fxView!])
-////
-//        addConstraints(horizontal)
-//        addConstraints(vertical)
-        
-    }
-    
-    
-    public func setActive(index: Int) {
+    /**
+     Set the active item on the tab bar
+     
+     - parameter index: The index to add
+     */
+    internal func setActive(index: Int) {
         guard let views = stack?.views as? [SRTabItem] else {
             Swift.print("Could not get views from stack")
             return
