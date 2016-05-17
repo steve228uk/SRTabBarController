@@ -10,6 +10,7 @@
 		2899BC601CEB7C3000D2DCC0 /* SRTabLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2899BC5F1CEB7C3000D2DCC0 /* SRTabLocation.swift */; };
 		2899BC631CEB7F1500D2DCC0 /* SRTabViewTop.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2899BC621CEB7F1500D2DCC0 /* SRTabViewTop.xib */; };
 		2899BC651CEB827A00D2DCC0 /* SRTabViewLeft.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2899BC641CEB827A00D2DCC0 /* SRTabViewLeft.xib */; };
+		2899BC671CEB86F500D2DCC0 /* SRTabViewRight.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2899BC661CEB86F500D2DCC0 /* SRTabViewRight.xib */; };
 		28DC76921CE8A4EF0054FEC4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28DC76911CE8A4EF0054FEC4 /* AppDelegate.swift */; };
 		28DC76941CE8A4EF0054FEC4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28DC76931CE8A4EF0054FEC4 /* ViewController.swift */; };
 		28DC76961CE8A4EF0054FEC4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 28DC76951CE8A4EF0054FEC4 /* Assets.xcassets */; };
@@ -28,6 +29,7 @@
 		2899BC5F1CEB7C3000D2DCC0 /* SRTabLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SRTabLocation.swift; path = ../../Pod/SRTabLocation.swift; sourceTree = "<group>"; };
 		2899BC621CEB7F1500D2DCC0 /* SRTabViewTop.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SRTabViewTop.xib; path = ../../Pod/SRTabViewTop.xib; sourceTree = "<group>"; };
 		2899BC641CEB827A00D2DCC0 /* SRTabViewLeft.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SRTabViewLeft.xib; path = ../../Pod/SRTabViewLeft.xib; sourceTree = "<group>"; };
+		2899BC661CEB86F500D2DCC0 /* SRTabViewRight.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SRTabViewRight.xib; path = ../../Pod/SRTabViewRight.xib; sourceTree = "<group>"; };
 		28DC768E1CE8A4EF0054FEC4 /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		28DC76911CE8A4EF0054FEC4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		28DC76931CE8A4EF0054FEC4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -61,6 +63,7 @@
 				28DC76A51CE8A6F90054FEC4 /* SRTabViewBottom.xib */,
 				2899BC621CEB7F1500D2DCC0 /* SRTabViewTop.xib */,
 				2899BC641CEB827A00D2DCC0 /* SRTabViewLeft.xib */,
+				2899BC661CEB86F500D2DCC0 /* SRTabViewRight.xib */,
 			);
 			name = Nibs;
 			sourceTree = "<group>";
@@ -172,6 +175,7 @@
 				28DC76961CE8A4EF0054FEC4 /* Assets.xcassets in Resources */,
 				2899BC651CEB827A00D2DCC0 /* SRTabViewLeft.xib in Resources */,
 				28DC76991CE8A4EF0054FEC4 /* Main.storyboard in Resources */,
+				2899BC671CEB86F500D2DCC0 /* SRTabViewRight.xib in Resources */,
 				2899BC631CEB7F1500D2DCC0 /* SRTabViewTop.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
