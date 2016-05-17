@@ -26,8 +26,10 @@ public class SRTabItem: NSButton {
         
         self.index = index
         self.viewController = viewController
+        wantsLayer = true
         bordered = false
         imagePosition = .ImageAbove
+        setButtonType(.MomentaryChangeButton)
         
         if let title = viewController.title {
             attributedTitle = NSAttributedString(string: title, attributes: [
@@ -57,6 +59,27 @@ public class SRTabItem: NSButton {
     
     func buttonPressed() {
         delegate?.tabIndexShouldChangeTo(index)
+    }
+    
+    func setImageTint(tint: NSColor) {
+        
+//        guard bounds != NSZeroRect else {
+//            Swift.print("Frame not yet set")
+//            return
+//        }
+//        
+//        if layer?.mask == nil {
+//            let template = image
+//            template?.template = true
+//            image = nil
+//            let maskLayer = CALayer()
+//            maskLayer.contents = template
+//            maskLayer.bounds = bounds
+//            layer?.mask = maskLayer
+//        }
+//        
+//        layer?.backgroundColor = tint.CGColor
+//        layer?.setNeedsDisplay()
     }
     
 }

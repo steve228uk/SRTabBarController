@@ -678,6 +678,12 @@
                         <userDefinedRuntimeAttribute type="color" keyPath="barBackgroundColor">
                             <color key="value" white="0.14000000000000001" alpha="1" colorSpace="calibratedWhite"/>
                         </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="barTintColor">
+                            <color key="value" red="0.99758023023605347" green="0.81171596050262451" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="barTextColor">
+                            <color key="value" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                     <connections>
                         <segue destination="hfN-tr-A8e" kind="custom" identifier="tab_0_Search" customClass="SRTabSegue" customModule="Example" customModuleProvider="target" id="XHe-ar-uLl"/>

@@ -26,7 +26,7 @@ public class SRTabBarController: NSViewController, NSTabViewDelegate, SRTabItemD
         }
     }
     
-    /// The text color of the tab bar
+    /// The text color of the tab bar 
     @IBInspectable public var barTextColor: NSColor = NSColor.whiteColor() {
         didSet {
             tabBar?.textColor = barTextColor
