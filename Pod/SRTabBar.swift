@@ -20,7 +20,7 @@ public class SRTabBar: NSView {
     /// The background color of the tab bar
     public var backgroundColor = NSColor.blackColor() {
         didSet {
-            layer?.backgroundColor = backgroundColor.CGColor
+            setNeedsDisplayInRect(bounds)
         }
     }
     
@@ -64,15 +64,37 @@ public class SRTabBar: NSView {
     
     internal var location: SRTabLocation = .Bottom
     
+    var fxView: NSVisualEffectView?
+    
     /// The stack view that is added to the bar.
     /// This view contains all of the items.
     private var stack: NSStackView?
     
+    
+    
+    // MARK: - Methods
+    
+    public override func drawRect(dirtyRect: NSRect) {
+        super.drawRect(dirtyRect)
+        
+        backgroundColor.setFill()
+        NSRectFill(dirtyRect)
+    }
+    
     public required init?(coder: NSCoder) {
         super.init(coder: coder)
         
-        wantsLayer = true
-        layer?.backgroundColor = backgroundColor.CGColor
+//        fxView = NSVisualEffectView(frame: bounds)
+//        fxView?.blendingMode = .BehindWindow
+//        fxView?.material = .Dark
+//        addSubview(fxView!)
+//        
+//        let horizontal = NSLayoutConstraint.constraintsWithVisualFormat("H:|[subview]|", options: .DirectionLeadingToTrailing, metrics: nil, views: ["subview": fxView!])
+//        let vertical = NSLayoutConstraint.constraintsWithVisualFormat("V:|[subview]|", options: .DirectionLeadingToTrailing, metrics: nil, views: ["subview": fxView!])
+////
+//        addConstraints(horizontal)
+//        addConstraints(vertical)
+        
     }
     
     

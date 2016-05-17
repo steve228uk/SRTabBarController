@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="10117"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="10116"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="SRTabBarController" customModule="Example" customModuleProvider="target"/>
@@ -12,12 +12,6 @@
             <rect key="frame" x="0.0" y="0.0" width="480" height="272"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
-                <customView translatesAutoresizingMaskIntoConstraints="NO" id="igQ-dY-iRN" customClass="SRTabBar" customModule="Example" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="0.0" width="480" height="49"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="49" id="BTj-0q-mN5"/>
-                    </constraints>
-                </customView>
                 <tabView drawsBackground="NO" allowsTruncatedLabels="NO" type="noTabsNoBorder" translatesAutoresizingMaskIntoConstraints="NO" id="Jv6-VY-NzA">
                     <rect key="frame" x="0.0" y="0.0" width="480" height="272"/>
                     <font key="font" metaFont="system"/>
@@ -26,6 +20,12 @@
                         <outlet property="delegate" destination="-2" id="zGP-4L-QQW"/>
                     </connections>
                 </tabView>
+                <customView translatesAutoresizingMaskIntoConstraints="NO" id="igQ-dY-iRN" customClass="SRTabBar" customModule="Example" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="0.0" width="480" height="49"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="49" id="BTj-0q-mN5"/>
+                    </constraints>
+                </customView>
             </subviews>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="igQ-dY-iRN" secondAttribute="bottom" id="22Y-uS-ouu"/>

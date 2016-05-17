@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="10117"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="10116"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner"/>
@@ -12,28 +12,28 @@
             <rect key="frame" x="0.0" y="0.0" width="480" height="272"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
-                <customView translatesAutoresizingMaskIntoConstraints="NO" id="wOc-we-SEM" customClass="SRTabBar" customModule="Example" customModuleProvider="target">
-                    <rect key="frame" x="414" y="0.0" width="66" height="272"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="66" id="efa-W1-hTg"/>
-                    </constraints>
-                </customView>
                 <tabView drawsBackground="NO" allowsTruncatedLabels="NO" type="noTabsNoBorder" translatesAutoresizingMaskIntoConstraints="NO" id="9hb-hb-WQu">
-                    <rect key="frame" x="0.0" y="0.0" width="480" height="272"/>
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="272"/>
                     <font key="font" metaFont="system"/>
                     <tabViewItems/>
                     <connections>
                         <outlet property="delegate" destination="-2" id="9AN-Ct-zKF"/>
                     </connections>
                 </tabView>
+                <customView translatesAutoresizingMaskIntoConstraints="NO" id="wOc-we-SEM" customClass="SRTabBar" customModule="Example" customModuleProvider="target">
+                    <rect key="frame" x="414" y="0.0" width="66" height="272"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="66" id="efa-W1-hTg"/>
+                    </constraints>
+                </customView>
             </subviews>
             <constraints>
                 <constraint firstItem="wOc-we-SEM" firstAttribute="top" secondItem="ZMY-61-tzU" secondAttribute="top" id="6sT-Mx-rcS"/>
                 <constraint firstItem="9hb-hb-WQu" firstAttribute="top" secondItem="ZMY-61-tzU" secondAttribute="top" id="9jm-Ix-yRg"/>
+                <constraint firstItem="wOc-we-SEM" firstAttribute="leading" secondItem="9hb-hb-WQu" secondAttribute="trailing" id="GQb-4r-0Xl"/>
                 <constraint firstAttribute="bottom" secondItem="wOc-we-SEM" secondAttribute="bottom" id="Gtx-sp-7Vb"/>
                 <constraint firstAttribute="trailing" secondItem="wOc-we-SEM" secondAttribute="trailing" id="Rpg-Wz-3XV"/>
                 <constraint firstAttribute="bottom" secondItem="9hb-hb-WQu" secondAttribute="bottom" id="RvW-BQ-v4u"/>
-                <constraint firstAttribute="trailing" secondItem="9hb-hb-WQu" secondAttribute="trailing" id="SwK-cV-I1C"/>
                 <constraint firstItem="9hb-hb-WQu" firstAttribute="leading" secondItem="ZMY-61-tzU" secondAttribute="leading" id="rKb-Hq-cIo"/>
             </constraints>
             <connections>
