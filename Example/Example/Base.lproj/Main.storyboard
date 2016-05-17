@@ -693,10 +693,10 @@
             </objects>
             <point key="canvasLocation" x="75" y="655"/>
         </scene>
-        <!--Search-->
+        <!--View Controller-->
         <scene sceneID="eMe-8C-uiV">
             <objects>
-                <viewController title="Search" id="hfN-tr-A8e" sceneMemberID="viewController">
+                <viewController id="hfN-tr-A8e" sceneMemberID="viewController">
                     <view key="view" id="e1k-Ub-V6J">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -724,10 +724,10 @@
             </objects>
             <point key="canvasLocation" x="-172" y="1120"/>
         </scene>
-        <!--Files-->
+        <!--View Controller-->
         <scene sceneID="9Kc-ZN-qEC">
             <objects>
-                <viewController title="Files" id="ggA-Nm-8fo" sceneMemberID="viewController">
+                <viewController id="ggA-Nm-8fo" sceneMemberID="viewController">
                     <view key="view" id="p1z-tM-WO6">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>

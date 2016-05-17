@@ -13,9 +13,9 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <customView translatesAutoresizingMaskIntoConstraints="NO" id="vOc-F2-lJn" customClass="SRTabBar" customModule="Example" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="0.0" width="66" height="272"/>
+                    <rect key="frame" x="0.0" y="0.0" width="80" height="272"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="66" id="RU3-89-TIj"/>
+                        <constraint firstAttribute="width" constant="80" id="RU3-89-TIj"/>
                     </constraints>
                 </customView>
                 <tabView drawsBackground="NO" allowsTruncatedLabels="NO" type="noTabsNoBorder" translatesAutoresizingMaskIntoConstraints="NO" id="yTt-GK-FtF">
