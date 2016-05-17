@@ -34,6 +34,9 @@ public class SRTabItem: NSButton {
                 NSFontAttributeName: NSFont.systemFontOfSize(10),
                 NSForegroundColorAttributeName: NSColor.whiteColor()
             ])
+        } else {
+            title = ""
+            imagePosition = .ImageOnly
         }
         
         (cell as? NSButtonCell)?.highlightsBy = .ContentsCellMask
