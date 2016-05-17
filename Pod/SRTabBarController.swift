@@ -118,14 +118,17 @@ public class SRTabBarController: NSViewController, NSTabViewDelegate, SRTabItemD
             return
         }
         
-        guard let index = Int(id.stringByReplacingOccurrencesOfString("tab_", withString: "")) else {
+        let pieces: [String] = id.characters.split("_").map(String.init)
+        
+        guard let index = Int(pieces[1]) else {
             print("Could not get index from identifier")
             return
         }
         
-        // Add the tab item to our tab bar
         let item = SRTabItem(index: index, viewController: vc)
-        item.image = NSImage(named: "Search")
+        if pieces.count > 2 {
+            item.image = NSImage(named: pieces[2])
+        }
         addTabItem(item)
         
     }

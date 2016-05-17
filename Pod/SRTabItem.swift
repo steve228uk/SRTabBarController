@@ -19,7 +19,6 @@ public class SRTabItem: NSButton {
     /// The view controller associated with this item
     var viewController: NSViewController?
     
-    
     // MARK: - Initializers
     
     init(index: Int, viewController: NSViewController) {
@@ -55,8 +54,6 @@ public class SRTabItem: NSButton {
     
     func buttonPressed() {
         delegate?.tabIndexShouldChangeTo(index)
-        
-        // TODO: Set the current button to active
     }
     
 }
