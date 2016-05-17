@@ -12,15 +12,8 @@ class ViewController: SRTabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        tabBarLocation = .Right
+        tabBarLocation = .Left
     }
-
-    override var representedObject: AnyObject? {
-        didSet {
-        // Update the view, if already loaded.
-        }
-    }
-
 
 }
 
