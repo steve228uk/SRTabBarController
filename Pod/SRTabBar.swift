@@ -65,19 +65,8 @@ public class SRTabBar: NSView {
         }
         
         for (current, view) in views.enumerate() {
-            if index == current {
-                view.setImageTint(tintColor)
-                view.attributedTitle = NSAttributedString(string: view.title, attributes: [
-                    NSFontAttributeName: NSFont.systemFontOfSize(10),
-                    NSForegroundColorAttributeName: tintColor
-                ])
-            } else {
-                view.setImageTint(textColor)
-                view.attributedTitle = NSAttributedString(string: view.title, attributes: [
-                    NSFontAttributeName: NSFont.systemFontOfSize(10),
-                    NSForegroundColorAttributeName: textColor
-                ])
-            }
+            let tint = (index == current) ? tintColor : textColor
+            view.setTintColor(tint)
         }
         
     }

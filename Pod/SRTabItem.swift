@@ -61,7 +61,12 @@ public class SRTabItem: NSButton {
         delegate?.tabIndexShouldChangeTo(index)
     }
     
-    func setImageTint(tint: NSColor) {
+    func setTintColor(tint: NSColor) {
+        
+        attributedTitle = NSAttributedString(string: title, attributes: [
+            NSFontAttributeName: NSFont.systemFontOfSize(10),
+            NSForegroundColorAttributeName: tint
+        ])
         
 //        guard bounds != NSZeroRect else {
 //            Swift.print("Frame not yet set")
