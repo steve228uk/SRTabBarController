@@ -29,7 +29,7 @@ public class SRTabItem: NSButton {
         wantsLayer = true
         bordered = false
         imagePosition = .ImageAbove
-        setButtonType(.MomentaryPushInButton)
+        setButtonType(.MomentaryChangeButton)
         
         if let title = viewController.title {
             attributedTitle = NSAttributedString(string: title, attributes: [
@@ -41,7 +41,7 @@ public class SRTabItem: NSButton {
             imagePosition = .ImageOnly
         }
         
-        (cell as? NSButtonCell)?.highlightsBy = .ContentsCellMask
+        (cell as? NSButtonCell)?.highlightsBy = .NoCellMask
     }
     
     required public init?(coder: NSCoder) {
