@@ -19,6 +19,14 @@ public class SRTabBarController: NSViewController, NSTabViewDelegate, SRTabItemD
     /// The currently selected tab index
     public var currentIndex = 0
     
+    /// The location of the tab bar on the screen
+    public var tabBarLocation: SRTabLocation = .Bottom {
+        didSet {
+            loadViewFromNib()
+            embedTabs()
+        }
+    }
+    
     /// The background color of the tab bar
     @IBInspectable public var barBackgroundColor: NSColor = NSColor.blackColor() {
         didSet {
@@ -56,7 +64,7 @@ public class SRTabBarController: NSViewController, NSTabViewDelegate, SRTabItemD
      */
     private func loadViewFromNib() {
         var nibObjects: NSArray?
-        NSBundle(forClass: SRTabBarController.self).loadNibNamed("SRTabView", owner: self, topLevelObjects: &nibObjects)
+        NSBundle(forClass: SRTabBarController.self).loadNibNamed(tabBarLocation.rawValue, owner: self, topLevelObjects: &nibObjects)
         
         guard let objects = nibObjects else {
             fatalError("Could not load tab bar controller")
@@ -70,6 +78,10 @@ public class SRTabBarController: NSViewController, NSTabViewDelegate, SRTabItemD
             tabBar = view.tabBar
             tabView = view.tabView
             self.view = view
+            
+            tabBar?.backgroundColor = barBackgroundColor
+            tabBar?.tintColor = barTintColor
+            tabBar?.textColor = barTextColor
         }
         
     }

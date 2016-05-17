@@ -8,11 +8,11 @@
 
 import Cocoa
 
-class ViewController: NSViewController {
+class ViewController: SRTabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        tabBarLocation = .Top
     }
 
     override var representedObject: AnyObject? {
