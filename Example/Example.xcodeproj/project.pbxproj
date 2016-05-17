@@ -24,6 +24,7 @@
 		28DC76B21CEA2C880054FEC4 /* SRTabItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28DC76B11CEA2C880054FEC4 /* SRTabItem.swift */; };
 		28DC76B41CEA2EA30054FEC4 /* SRTabItemDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28DC76B31CEA2EA30054FEC4 /* SRTabItemDelegate.swift */; };
 		28F0CF711CEBC0EA0031D160 /* ExampleWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28F0CF701CEBC0EA0031D160 /* ExampleWindowController.swift */; };
+		28F0CF731CEBD9410031D160 /* SRTabBarBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28F0CF721CEBD9410031D160 /* SRTabBarBackground.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +47,7 @@
 		28DC76B11CEA2C880054FEC4 /* SRTabItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SRTabItem.swift; path = ../../Pod/SRTabItem.swift; sourceTree = "<group>"; };
 		28DC76B31CEA2EA30054FEC4 /* SRTabItemDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SRTabItemDelegate.swift; path = ../../Pod/SRTabItemDelegate.swift; sourceTree = "<group>"; };
 		28F0CF701CEBC0EA0031D160 /* ExampleWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExampleWindowController.swift; sourceTree = "<group>"; };
+		28F0CF721CEBD9410031D160 /* SRTabBarBackground.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SRTabBarBackground.swift; path = ../../Pod/SRTabBarBackground.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +114,7 @@
 				28DC76B11CEA2C880054FEC4 /* SRTabItem.swift */,
 				28DC76B31CEA2EA30054FEC4 /* SRTabItemDelegate.swift */,
 				2899BC5F1CEB7C3000D2DCC0 /* SRTabLocation.swift */,
+				28F0CF721CEBD9410031D160 /* SRTabBarBackground.swift */,
 			);
 			name = Pod;
 			sourceTree = "<group>";
@@ -190,6 +193,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				28F0CF731CEBD9410031D160 /* SRTabBarBackground.swift in Sources */,
 				28DC76941CE8A4EF0054FEC4 /* ViewController.swift in Sources */,
 				28DC76B41CEA2EA30054FEC4 /* SRTabItemDelegate.swift in Sources */,
 				28DC76A81CE8A7B80054FEC4 /* SRTabView.swift in Sources */,

@@ -13,14 +13,15 @@ public class SRTabBar: NSVisualEffectView {
     /// Whether or not the tab bar is translucent
     public var translucent = false {
         didSet {
-            setNeedsDisplayInRect(bounds)
+            state = (translucent) ? .Active : .Inactive
+            backgroundView.hidden = translucent
         }
     }
     
     /// The background color of the tab bar
     public var backgroundColor = NSColor.blackColor() {
         didSet {
-            setNeedsDisplayInRect(bounds)
+            backgroundView.backgroundColor = backgroundColor
         }
     }
     
@@ -73,20 +74,25 @@ public class SRTabBar: NSVisualEffectView {
     /// This view contains all of the items.
     private var stack: NSStackView?
     
+    private var backgroundView = SRTabBarBackground()
     
     // MARK: - Methods
     
-    public override func drawRect(dirtyRect: NSRect) {
-        super.drawRect(dirtyRect)
+    public required init?(coder: NSCoder) {
+        super.init(coder: coder)
         
-        if translucent {
-            NSColor.clearColor().setFill()
-        } else {
-            backgroundColor.setFill()
-        }
+        backgroundView.frame = NSZeroRect
+        backgroundView.wantsLayer = true
+        backgroundView.backgroundColor = backgroundColor
+        addSubview(backgroundView)
         
-        NSRectFill(dirtyRect)
+        backgroundView.translatesAutoresizingMaskIntoConstraints = false
+        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[subview]-0-|", options: .DirectionLeadingToTrailing, metrics: nil, views: ["subview": backgroundView]))
+        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[subview]-0-|", options: .DirectionLeadingToTrailing, metrics: nil, views: ["subview": backgroundView]))
+        
+        state = .Inactive
     }
+
     
     /**
      Set the active item on the tab bar
