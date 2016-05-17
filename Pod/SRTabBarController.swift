@@ -19,6 +19,9 @@ public class SRTabBarController: NSViewController, NSTabViewDelegate, SRTabItemD
     /// The currently selected tab index
     public var currentIndex = 0
     
+    /// The delegate for the controller
+    public weak var delegate: SRTabBarDelegate?
+    
     /// The location of the tab bar on the screen
     public var tabBarLocation: SRTabLocation = .Bottom {
         didSet {
@@ -185,6 +188,7 @@ public class SRTabBarController: NSViewController, NSTabViewDelegate, SRTabItemD
         
         currentIndex = tabView.indexOfTabViewItem(item)
         tabBar?.setActive(currentIndex)
+        delegate?.tabIndexChanged(currentIndex)
     }
     
     
