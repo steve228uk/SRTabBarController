@@ -49,14 +49,12 @@ public class SRTabBar: NSVisualEffectView {
             addSubview(stack!)
             
             if [SRTabLocation.Top, SRTabLocation.Bottom].contains(location) {
-                stack?.distribution = .EqualCentering
                 
                 let centerX = NSLayoutConstraint(item: stack!, attribute: .CenterX, relatedBy: .Equal, toItem: self, attribute: .CenterX, multiplier: 1, constant: 0)
                 let centerY = NSLayoutConstraint(item: stack!, attribute: .CenterY, relatedBy: .Equal, toItem: self, attribute: .CenterY, multiplier: 1, constant: 0)
                 
                 addConstraints([centerX, centerY])
             } else {
-                stack?.distribution = .FillEqually
                 stack?.alignment = .CenterX
                 
                 let horizontal = NSLayoutConstraint.constraintsWithVisualFormat("H:|-10-[stack]-10-|", options: .DirectionLeadingToTrailing, metrics: nil, views: ["stack": stack!])
