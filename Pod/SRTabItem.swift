@@ -29,7 +29,7 @@ public class SRTabItem: NSButton {
         wantsLayer = true
         bordered = false
         imagePosition = .ImageAbove
-        setButtonType(.MomentaryChangeButton)
+        setButtonType(.MomentaryPushInButton)
         
         if let title = viewController.title {
             attributedTitle = NSAttributedString(string: title, attributes: [
@@ -68,23 +68,19 @@ public class SRTabItem: NSButton {
             NSForegroundColorAttributeName: tint
         ])
         
-//        guard bounds != NSZeroRect else {
-//            Swift.print("Frame not yet set")
-//            return
-//        }
-//        
-//        if layer?.mask == nil {
-//            let template = image
-//            template?.template = true
-//            image = nil
-//            let maskLayer = CALayer()
-//            maskLayer.contents = template
-//            maskLayer.bounds = bounds
-//            layer?.mask = maskLayer
-//        }
-//        
-//        layer?.backgroundColor = tint.CGColor
-//        layer?.setNeedsDisplay()
+        guard let image = image else {
+            Swift.print("Item has no image")
+            return
+        }
+        
+        image.lockFocus()
+        tint.set()
+        let imageRect = NSRect(origin: NSZeroPoint, size: image.size)
+        NSRectFillUsingOperation(imageRect, .CompositeSourceAtop)
+        image.unlockFocus()
+        
+        self.image = image
+        
     }
     
 }
