@@ -23,6 +23,7 @@ public class SRTabBarController: NSViewController, NSTabViewDelegate, SRTabItemD
     public var tabBarLocation: SRTabLocation = .Bottom {
         didSet {
             loadViewFromNib()
+            tabBar?.location = tabBarLocation
             embedTabs()
         }
     }

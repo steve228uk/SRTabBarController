@@ -32,19 +32,37 @@ public class SRTabBar: NSView {
     /// When set, the tabs will be added to a stack view.
     public var items = [SRTabItem]() {
         didSet {
+            
             stack?.removeFromSuperview()
             stack = NSStackView(views: items)
-            stack?.spacing = 45
-            stack?.distribution = .EqualCentering
+            
             addSubview(stack!)
             
-            let centerX = NSLayoutConstraint(item: stack!, attribute: .CenterX, relatedBy: .Equal, toItem: self, attribute: .CenterX, multiplier: 1, constant: 0)
-            let centerY = NSLayoutConstraint(item: stack!, attribute: .CenterY, relatedBy: .Equal, toItem: self, attribute: .CenterY, multiplier: 1, constant: 0)
-            
-            addConstraints([centerX, centerY])
+            if [SRTabLocation.Top, SRTabLocation.Bottom].contains(location) {
+                stack?.spacing = 45
+                stack?.distribution = .EqualCentering
+                
+                let centerX = NSLayoutConstraint(item: stack!, attribute: .CenterX, relatedBy: .Equal, toItem: self, attribute: .CenterX, multiplier: 1, constant: 0)
+                let centerY = NSLayoutConstraint(item: stack!, attribute: .CenterY, relatedBy: .Equal, toItem: self, attribute: .CenterY, multiplier: 1, constant: 0)
+                
+                addConstraints([centerX, centerY])
+            } else {
+                
+                stack?.spacing = 30
+                stack?.distribution = .FillEqually
+                stack?.alignment = .CenterX
+                
+                let horizontal = NSLayoutConstraint.constraintsWithVisualFormat("H:|-10-[stack]-10-|", options: .DirectionLeadingToTrailing, metrics: nil, views: ["stack": stack!])
+                let vertical = NSLayoutConstraint.constraintsWithVisualFormat("V:|-30-[stack]", options: .DirectionLeadingToTrailing, metrics: nil, views: ["stack": stack!])
+//
+                addConstraints(horizontal)
+                addConstraints(vertical)
+            }
+        
         }
     }
     
+    internal var location: SRTabLocation = .Bottom
     
     /// The stack view that is added to the bar.
     /// This view contains all of the items.

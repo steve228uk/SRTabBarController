@@ -12,7 +12,7 @@ class ViewController: SRTabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        tabBarLocation = .Top
+        tabBarLocation = .Left
     }
 
     override var representedObject: AnyObject? {
