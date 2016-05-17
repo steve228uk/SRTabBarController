@@ -23,6 +23,7 @@
 		28DC76B01CEA24EC0054FEC4 /* SRTabBarDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28DC76AF1CEA24EC0054FEC4 /* SRTabBarDelegate.swift */; };
 		28DC76B21CEA2C880054FEC4 /* SRTabItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28DC76B11CEA2C880054FEC4 /* SRTabItem.swift */; };
 		28DC76B41CEA2EA30054FEC4 /* SRTabItemDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28DC76B31CEA2EA30054FEC4 /* SRTabItemDelegate.swift */; };
+		28F0CF711CEBC0EA0031D160 /* ExampleWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28F0CF701CEBC0EA0031D160 /* ExampleWindowController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,7 @@
 		28DC76AF1CEA24EC0054FEC4 /* SRTabBarDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SRTabBarDelegate.swift; path = ../../Pod/SRTabBarDelegate.swift; sourceTree = "<group>"; };
 		28DC76B11CEA2C880054FEC4 /* SRTabItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SRTabItem.swift; path = ../../Pod/SRTabItem.swift; sourceTree = "<group>"; };
 		28DC76B31CEA2EA30054FEC4 /* SRTabItemDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SRTabItemDelegate.swift; path = ../../Pod/SRTabItemDelegate.swift; sourceTree = "<group>"; };
+		28F0CF701CEBC0EA0031D160 /* ExampleWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExampleWindowController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +91,7 @@
 			children = (
 				28DC76A01CE8A52F0054FEC4 /* Pod */,
 				28DC76911CE8A4EF0054FEC4 /* AppDelegate.swift */,
+				28F0CF701CEBC0EA0031D160 /* ExampleWindowController.swift */,
 				28DC76931CE8A4EF0054FEC4 /* ViewController.swift */,
 				28DC76951CE8A4EF0054FEC4 /* Assets.xcassets */,
 				28DC76971CE8A4EF0054FEC4 /* Main.storyboard */,
@@ -190,6 +193,7 @@
 				28DC76941CE8A4EF0054FEC4 /* ViewController.swift in Sources */,
 				28DC76B41CEA2EA30054FEC4 /* SRTabItemDelegate.swift in Sources */,
 				28DC76A81CE8A7B80054FEC4 /* SRTabView.swift in Sources */,
+				28F0CF711CEBC0EA0031D160 /* ExampleWindowController.swift in Sources */,
 				2899BC601CEB7C3000D2DCC0 /* SRTabLocation.swift in Sources */,
 				28DC76B01CEA24EC0054FEC4 /* SRTabBarDelegate.swift in Sources */,
 				28DC76A21CE8A5520054FEC4 /* SRTabBarController.swift in Sources */,
