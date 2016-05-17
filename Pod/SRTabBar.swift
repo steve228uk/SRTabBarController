@@ -48,13 +48,13 @@ public class SRTabBar: NSView {
                 addConstraints([centerX, centerY])
             } else {
                 
-                stack?.spacing = 30
+                stack?.spacing = 20
                 stack?.distribution = .FillEqually
                 stack?.alignment = .CenterX
                 
                 let horizontal = NSLayoutConstraint.constraintsWithVisualFormat("H:|-10-[stack]-10-|", options: .DirectionLeadingToTrailing, metrics: nil, views: ["stack": stack!])
                 let vertical = NSLayoutConstraint.constraintsWithVisualFormat("V:|-20-[stack]", options: .DirectionLeadingToTrailing, metrics: nil, views: ["stack": stack!])
-//
+                
                 addConstraints(horizontal)
                 addConstraints(vertical)
             }
