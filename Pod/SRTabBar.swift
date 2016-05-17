@@ -24,17 +24,9 @@ public class SRTabBar: NSView {
         }
     }
     
-    public var tintColor = NSColor.yellowColor() {
-        didSet {
-            // TODO
-        }
-    }
+    public var tintColor = NSColor.yellowColor()
     
-    public var textColor = NSColor.whiteColor() {
-        didSet {
-            // TODO
-        }
-    }
+    public var textColor = NSColor.whiteColor()
     
     /// The items that are displayed on the tab bar.
     /// When set, the tabs will be added to a stack view.
@@ -65,4 +57,27 @@ public class SRTabBar: NSView {
         layer?.backgroundColor = backgroundColor.CGColor
     }
     
+    
+    public func setActive(index: Int) {
+        guard let views = stack?.views as? [SRTabItem] else {
+            Swift.print("Could not get views from stack")
+            return
+        }
+        
+        for (current, view) in views.enumerate() {
+            if index == current {
+                view.attributedTitle = NSAttributedString(string: view.title, attributes: [
+                    NSFontAttributeName: NSFont.systemFontOfSize(10),
+                    NSForegroundColorAttributeName: tintColor
+                ])
+                continue
+            }
+            
+            view.attributedTitle = NSAttributedString(string: view.title, attributes: [
+                NSFontAttributeName: NSFont.systemFontOfSize(10),
+                NSForegroundColorAttributeName: textColor
+            ])
+        }
+        
+    }
 }

@@ -104,6 +104,8 @@ public class SRTabBarController: NSViewController, NSTabViewDelegate, SRTabItemD
             }
         }
         
+        tabBar?.setActive(currentIndex)
+        
     }
     
     public override func prepareForSegue(segue: NSStoryboardSegue, sender: AnyObject?) {
@@ -161,6 +163,7 @@ public class SRTabBarController: NSViewController, NSTabViewDelegate, SRTabItemD
         }
         
         currentIndex = tabView.indexOfTabViewItem(item)
+        tabBar?.setActive(currentIndex)
     }
     
     
