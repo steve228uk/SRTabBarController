@@ -8,25 +8,35 @@
 
 import Cocoa
 
-public class SRTabBar: NSView {
+public class SRTabBar: NSVisualEffectView {
 
     /// Whether or not the tab bar is translucent
     public var translucent = false {
         didSet {
-            // Set the translucency here
+            state = (translucent) ? .Active : .Inactive
+            backgroundView.hidden = translucent
         }
     }
     
     /// The background color of the tab bar
     public var backgroundColor = NSColor.blackColor() {
         didSet {
-            layer?.backgroundColor = backgroundColor.CGColor
+            backgroundView.backgroundColor = backgroundColor
         }
     }
     
+    /// The colour used for active items
     public var tintColor = NSColor.yellowColor()
     
+    /// The colour used for inactive items
     public var textColor = NSColor.whiteColor()
+    
+    /// Spacing between the items
+    public var itemSpacing: CGFloat = 25 {
+        didSet {
+            stack?.spacing = itemSpacing
+        }
+    }
     
     /// The items that are displayed on the tab bar.
     /// When set, the tabs will be added to a stack view.
@@ -35,26 +45,22 @@ public class SRTabBar: NSView {
             
             stack?.removeFromSuperview()
             stack = NSStackView(views: items)
-            
+            Swift.print(itemSpacing)
+            stack?.spacing = itemSpacing
             addSubview(stack!)
             
             if [SRTabLocation.Top, SRTabLocation.Bottom].contains(location) {
-                stack?.spacing = 45
-                stack?.distribution = .EqualCentering
                 
                 let centerX = NSLayoutConstraint(item: stack!, attribute: .CenterX, relatedBy: .Equal, toItem: self, attribute: .CenterX, multiplier: 1, constant: 0)
                 let centerY = NSLayoutConstraint(item: stack!, attribute: .CenterY, relatedBy: .Equal, toItem: self, attribute: .CenterY, multiplier: 1, constant: 0)
                 
                 addConstraints([centerX, centerY])
             } else {
-                
-                stack?.spacing = 30
-                stack?.distribution = .FillEqually
                 stack?.alignment = .CenterX
                 
                 let horizontal = NSLayoutConstraint.constraintsWithVisualFormat("H:|-10-[stack]-10-|", options: .DirectionLeadingToTrailing, metrics: nil, views: ["stack": stack!])
-                let vertical = NSLayoutConstraint.constraintsWithVisualFormat("V:|-20-[stack]", options: .DirectionLeadingToTrailing, metrics: nil, views: ["stack": stack!])
-//
+                let vertical = NSLayoutConstraint.constraintsWithVisualFormat("V:|-30-[stack]", options: .DirectionLeadingToTrailing, metrics: nil, views: ["stack": stack!])
+                
                 addConstraints(horizontal)
                 addConstraints(vertical)
             }
@@ -68,15 +74,32 @@ public class SRTabBar: NSView {
     /// This view contains all of the items.
     private var stack: NSStackView?
     
+    private var backgroundView = SRTabBarBackground()
+    
+    // MARK: - Methods
+    
     public required init?(coder: NSCoder) {
         super.init(coder: coder)
         
-        wantsLayer = true
-        layer?.backgroundColor = backgroundColor.CGColor
+        backgroundView.frame = NSZeroRect
+        backgroundView.wantsLayer = true
+        backgroundView.backgroundColor = backgroundColor
+        addSubview(backgroundView)
+        
+        backgroundView.translatesAutoresizingMaskIntoConstraints = false
+        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[subview]-0-|", options: .DirectionLeadingToTrailing, metrics: nil, views: ["subview": backgroundView]))
+        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[subview]-0-|", options: .DirectionLeadingToTrailing, metrics: nil, views: ["subview": backgroundView]))
+        
+        state = .Inactive
     }
+
     
-    
-    public func setActive(index: Int) {
+    /**
+     Set the active item on the tab bar
+     
+     - parameter index: The index to add
+     */
+    internal func setActive(index: Int) {
         guard let views = stack?.views as? [SRTabItem] else {
             Swift.print("Could not get views from stack")
             return

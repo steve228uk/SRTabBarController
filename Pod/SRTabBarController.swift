@@ -19,6 +19,9 @@ public class SRTabBarController: NSViewController, NSTabViewDelegate, SRTabItemD
     /// The currently selected tab index
     public var currentIndex = 0
     
+    /// The delegate for the controller
+    public weak var delegate: SRTabBarDelegate?
+    
     /// The location of the tab bar on the screen
     public var tabBarLocation: SRTabLocation = .Bottom {
         didSet {
@@ -46,6 +49,13 @@ public class SRTabBarController: NSViewController, NSTabViewDelegate, SRTabItemD
     @IBInspectable public var barTintColor: NSColor = NSColor.yellowColor() {
         didSet {
             tabBar?.tintColor = barTintColor
+        }
+    }
+    
+    /// The spacing between items on the tab bar
+    @IBInspectable public var itemSpacing: CGFloat = 25 {
+        didSet {
+            tabBar?.itemSpacing = itemSpacing
         }
     }
     
@@ -83,6 +93,7 @@ public class SRTabBarController: NSViewController, NSTabViewDelegate, SRTabItemD
             tabBar?.backgroundColor = barBackgroundColor
             tabBar?.tintColor = barTintColor
             tabBar?.textColor = barTextColor
+            tabBar?.itemSpacing = itemSpacing
         }
         
     }
@@ -177,6 +188,7 @@ public class SRTabBarController: NSViewController, NSTabViewDelegate, SRTabItemD
         
         currentIndex = tabView.indexOfTabViewItem(item)
         tabBar?.setActive(currentIndex)
+        delegate?.tabIndexChanged(currentIndex)
     }
     
     

@@ -8,6 +8,13 @@
 
 import Cocoa
 
-protocol SRTabBarDelegate: NSObjectProtocol {
+public protocol SRTabBarDelegate: NSObjectProtocol {
+    
+    /**
+     Called when the index of the active tab has changed
+     
+     - parameter index: The index the tab changed to
+     */
+    func tabIndexChanged(index: Int)
     
 }

@@ -12,29 +12,29 @@
             <rect key="frame" x="0.0" y="0.0" width="480" height="272"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
-                <customView translatesAutoresizingMaskIntoConstraints="NO" id="vOc-F2-lJn" customClass="SRTabBar" customModule="Example" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="0.0" width="80" height="272"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="80" id="RU3-89-TIj"/>
-                    </constraints>
-                </customView>
                 <tabView drawsBackground="NO" allowsTruncatedLabels="NO" type="noTabsNoBorder" translatesAutoresizingMaskIntoConstraints="NO" id="yTt-GK-FtF">
-                    <rect key="frame" x="0.0" y="0.0" width="480" height="272"/>
+                    <rect key="frame" x="66" y="0.0" width="414" height="272"/>
                     <font key="font" metaFont="system"/>
                     <tabViewItems/>
                     <connections>
                         <outlet property="delegate" destination="-2" id="VNa-Hh-aJ6"/>
                     </connections>
                 </tabView>
+                <customView translatesAutoresizingMaskIntoConstraints="NO" id="vOc-F2-lJn" customClass="SRTabBar" customModule="Example" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="0.0" width="66" height="272"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="66" id="RU3-89-TIj"/>
+                    </constraints>
+                </customView>
             </subviews>
             <constraints>
+                <constraint firstItem="yTt-GK-FtF" firstAttribute="leading" secondItem="vOc-F2-lJn" secondAttribute="trailing" id="0bm-5c-kBf"/>
                 <constraint firstItem="vOc-F2-lJn" firstAttribute="top" secondItem="7LR-7I-AGU" secondAttribute="top" id="3NM-Uj-xoz"/>
                 <constraint firstAttribute="bottom" secondItem="yTt-GK-FtF" secondAttribute="bottom" id="9F2-hx-67g"/>
                 <constraint firstAttribute="bottom" secondItem="vOc-F2-lJn" secondAttribute="bottom" id="HtP-7V-0ce"/>
                 <constraint firstItem="yTt-GK-FtF" firstAttribute="top" secondItem="7LR-7I-AGU" secondAttribute="top" id="Xax-lk-SsQ"/>
                 <constraint firstItem="vOc-F2-lJn" firstAttribute="leading" secondItem="7LR-7I-AGU" secondAttribute="leading" id="ZGx-8k-eIy"/>
                 <constraint firstAttribute="trailing" secondItem="yTt-GK-FtF" secondAttribute="trailing" id="e6U-7C-30z"/>
-                <constraint firstItem="yTt-GK-FtF" firstAttribute="leading" secondItem="7LR-7I-AGU" secondAttribute="leading" id="lZo-9l-8il"/>
             </constraints>
             <connections>
                 <outlet property="tabBar" destination="vOc-F2-lJn" id="h2d-ee-nBd"/>
