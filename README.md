@@ -1,5 +1,5 @@
 # SRTabBarController
-[![license](https://img.shields.io/github/license/mashape/apistatus.svg?maxAge=2592000)](https://github.com/steve228uk/SRTabBarController/blob/master/LICENSE)
+[![license](https://img.shields.io/github/license/mashape/apistatus.svg?maxAge=2592000)](https://github.com/steve228uk/SRTabBarController/blob/master/LICENSE) [![CocoaPods](https://img.shields.io/cocoapods/p/SRTabBarController.svg?maxAge=2592000)](https://cocoapods.org/pods/SRTabBarController) [![CocoaPods](https://img.shields.io/cocoapods/v/SRTabBarController.svg?maxAge=2592000)](https://cocoapods.org/pods/SRTabBarController)
 
 `SRTabBarController` aims to replicate much of `UITabBarController`'s functionality for OS X. It acts as a visual tab bar for `NSTabView` and has a number of nifty features.
 
