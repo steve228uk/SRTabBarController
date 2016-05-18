@@ -27,11 +27,11 @@ While `SRTabBarController` can be added to your project programatically, it is r
 1. Drag a new `UIViewController` into your storyboard and set it as the root content view controller for your window.
 2. Set the class of the new controller to be `SRTabBarController` ensuring that the bundle is set correctly.
 
-![Xcode Inspector](https://github.com/steve228uk/SRTabBarController/blob/master/Screenshots/inspector-1.gif)
+![Xcode Inspector](https://github.com/steve228uk/SRTabBarController/blob/master/Screenshots/inspector-1.png)
 
 3. Define tab bar properties from the Attributes inspector on the `SRTabBarController`.
 
-![Attributes Inspector](https://github.com/steve228uk/SRTabBarController/blob/master/Screenshots/inspector-2.gif)
+![Attributes Inspector](https://github.com/steve228uk/SRTabBarController/blob/master/Screenshots/inspector-2.png)
 
 4. Create your view controllers for each tab and link your `SRTabBarController` to them using a Custom segue.
 
@@ -40,6 +40,6 @@ While `SRTabBarController` can be added to your project programatically, it is r
 5. Ensure each tab view controller has a title defined in the attributes inspector. This is used as the title of the tab.
 6. Okay, this is the trickiest part. Click on each of the segues you just created and define the following in the attributes inspector.
 
-![Attributes Inspector](https://github.com/steve228uk/SRTabBarController/blob/master/Screenshots/inspector-3.gif)
+![Attributes Inspector](https://github.com/steve228uk/SRTabBarController/blob/master/Screenshots/inspector-3.png)
 
 The index here defines the position it will be displayed in the tab bar. Optionally, you can provide the name of a **template** image within your app's assets. For example if you had a search tab that you wanted to be at position 1 and have an icon called Search you would set the following as the identifier `tab_1_Search`.
