@@ -81,8 +81,9 @@ public class SRTabBar: NSVisualEffectView {
     public required init?(coder: NSCoder) {
         super.init(coder: coder)
         
+        wantsLayer = true
+        
         backgroundView.frame = NSZeroRect
-        backgroundView.wantsLayer = true
         backgroundView.backgroundColor = backgroundColor
         addSubview(backgroundView)
         
