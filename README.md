@@ -40,6 +40,7 @@ While `SRTabBarController` can be added to your project programatically, it is r
 ![Attributes Inspector](https://github.com/steve228uk/SRTabBarController/blob/master/Screenshots/segue.gif)
 
 **5 -** Ensure each tab view controller has a title defined in the attributes inspector. This is used as the title of the tab.
+
 **6 -** Okay, this is the trickiest part. Click on each of the segues you just created and define the following in the attributes inspector.
 
 ![Attributes Inspector](https://github.com/steve228uk/SRTabBarController/blob/master/Screenshots/inspector-3.png)
