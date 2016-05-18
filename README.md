@@ -1,5 +1,7 @@
 # SRTabBarController
 
+![Types of tab bars](https://github.com/steve228uk/SRTabBarController/blob/master/Screenshots/Types.gif)
+
 SRTabBarController aims to replicate much of `UITabBarController`'s functionality for OS X. It acts as a visual tab bar for `NSTabView` and has a number of nifty features.
 
 - Add tabs using segues right within your storyboard.
