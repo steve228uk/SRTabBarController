@@ -689,8 +689,8 @@
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                     <connections>
-                        <segue destination="hfN-tr-A8e" kind="custom" identifier="tab_0_Search" customClass="SRTabSegue" customModule="Example" customModuleProvider="target" id="XHe-ar-uLl"/>
-                        <segue destination="ggA-Nm-8fo" kind="custom" identifier="tab_1_Files" customClass="SRTabSegue" customModule="Example" customModuleProvider="target" id="6wP-Ri-5zj"/>
+                        <segue destination="hfN-tr-A8e" kind="custom" identifier="tab_1_Search" customClass="SRTabSegue" customModule="Example" customModuleProvider="target" id="XHe-ar-uLl"/>
+                        <segue destination="ggA-Nm-8fo" kind="custom" identifier="tab_0_Files" customClass="SRTabSegue" customModule="Example" customModuleProvider="target" id="6wP-Ri-5zj"/>
                     </connections>
                 </viewController>
             </objects>
