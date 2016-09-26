@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1004" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="10117"/>
@@ -39,6 +39,7 @@
             <connections>
                 <outlet property="tabBar" destination="vOc-F2-lJn" id="h2d-ee-nBd"/>
                 <outlet property="tabView" destination="yTt-GK-FtF" id="Tz4-Er-MMh"/>
+                <outlet property="widthConstraint" destination="RU3-89-TIj" id="ZEg-Ni-F0K"/>
             </connections>
         </customView>
     </objects>
