@@ -19,6 +19,9 @@ public class SRTabBarController: NSViewController, NSTabViewDelegate, SRTabItemD
     /// The currently selected tab index
     public var currentIndex = 0
     
+    /// The tab bar's width
+    public var tabBarWidth: CGFloat = 66.0
+    
     /// The delegate for the controller
     public weak var delegate: SRTabBarDelegate?
     
@@ -86,6 +89,7 @@ public class SRTabBarController: NSViewController, NSTabViewDelegate, SRTabItemD
                 continue
             }
             
+            view.widthConstraint?.constant = tabBarWidth
             tabBar = view.tabBar
             tabView = view.tabView
             self.view = view

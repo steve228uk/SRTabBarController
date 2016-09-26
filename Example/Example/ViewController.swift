@@ -13,6 +13,7 @@ class ViewController: SRTabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        tabBarWidth = 60
         tabBarLocation = .Top
         tabBar?.translucent = true
 //        tabBar?.backgroundColor = NSColor.darkGrayColor()

@@ -14,4 +14,5 @@ public class SRTabView: NSView {
     
     @IBOutlet weak var tabBar: SRTabBar!
     
+    @IBOutlet weak var widthConstraint: NSLayoutConstraint!
 }
