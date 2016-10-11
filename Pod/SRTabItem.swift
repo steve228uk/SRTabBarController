@@ -29,7 +29,7 @@ public class SRTabItem: NSButton {
         wantsLayer = true
         bordered = false
         imagePosition = .ImageAbove
-        setButtonType(.MomentaryChangeButton)
+        setButtonType(.MomentaryChange)
         
         if let title = viewController.title {
             attributedTitle = NSAttributedString(string: title, attributes: [
@@ -76,7 +76,7 @@ public class SRTabItem: NSButton {
         image.lockFocus()
         tint.set()
         let imageRect = NSRect(origin: NSZeroPoint, size: image.size)
-        NSRectFillUsingOperation(imageRect, .CompositeSourceAtop)
+        NSRectFillUsingOperation(imageRect, .SourceAtop)
         image.unlockFocus()
         
         self.image = image
