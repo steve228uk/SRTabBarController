@@ -14,7 +14,7 @@ public class SRTabBarController: NSViewController, NSTabViewDelegate, SRTabItemD
     public var tabBar: SRTabBar?
     
     /// The tab view that is being used behind the scenes
-    private var tabView: NSTabView?
+    public var tabView: NSTabView?
     
     /// The currently selected tab index
     public var currentIndex = 0
