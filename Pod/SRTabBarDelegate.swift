@@ -15,6 +15,6 @@ public protocol SRTabBarDelegate: NSObjectProtocol {
      
      - parameter index: The index the tab changed to
      */
-    func tabIndexChanged(index: Int)
+    func tabIndexChanged(_ index: Int)
     
 }

@@ -8,31 +8,31 @@
 
 import Cocoa
 
-public class SRTabBar: NSVisualEffectView {
+open class SRTabBar: NSVisualEffectView {
 
     /// Whether or not the tab bar is translucent
-    public var translucent = false {
+    open var translucent = false {
         didSet {
-            state = (translucent) ? .Active : .Inactive
-            backgroundView.hidden = translucent
+            state = (translucent) ? .active : .inactive
+            backgroundView.isHidden = translucent
         }
     }
     
     /// The background color of the tab bar
-    public var backgroundColor = NSColor.blackColor() {
+    open var backgroundColor = NSColor.black {
         didSet {
             backgroundView.backgroundColor = backgroundColor
         }
     }
     
     /// The colour used for active items
-    public var tintColor = NSColor.yellowColor()
+    open var tintColor = NSColor.yellow
     
     /// The colour used for inactive items
-    public var textColor = NSColor.whiteColor()
+    open var textColor = NSColor.white
     
     /// Spacing between the items
-    public var itemSpacing: CGFloat = 25 {
+    open var itemSpacing: CGFloat = 25 {
         didSet {
             stack?.spacing = itemSpacing
         }
@@ -40,26 +40,26 @@ public class SRTabBar: NSVisualEffectView {
     
     /// The items that are displayed on the tab bar.
     /// When set, the tabs will be added to a stack view.
-    public var items = [SRTabItem]() {
+    open var items = [SRTabItem]() {
         didSet {
             
             stack?.removeFromSuperview()
-            stack = NSStackView(views: items.sort { $0.index < $1.index })
+            stack = NSStackView(views: items.sorted { $0.index < $1.index })
             Swift.print(itemSpacing)
             stack?.spacing = itemSpacing
             addSubview(stack!)
             
             if [SRTabLocation.Top, SRTabLocation.Bottom].contains(location) {
                 
-                let centerX = NSLayoutConstraint(item: stack!, attribute: .CenterX, relatedBy: .Equal, toItem: self, attribute: .CenterX, multiplier: 1, constant: 0)
-                let centerY = NSLayoutConstraint(item: stack!, attribute: .CenterY, relatedBy: .Equal, toItem: self, attribute: .CenterY, multiplier: 1, constant: 0)
+                let centerX = NSLayoutConstraint(item: stack!, attribute: .centerX, relatedBy: .equal, toItem: self, attribute: .centerX, multiplier: 1, constant: 0)
+                let centerY = NSLayoutConstraint(item: stack!, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .centerY, multiplier: 1, constant: 0)
                 
                 addConstraints([centerX, centerY])
             } else {
-                stack?.alignment = .CenterX
+                stack?.alignment = .centerX
                 
-                let horizontal = NSLayoutConstraint.constraintsWithVisualFormat("H:|-10-[stack]-10-|", options: .DirectionLeadingToTrailing, metrics: nil, views: ["stack": stack!])
-                let vertical = NSLayoutConstraint.constraintsWithVisualFormat("V:|-30-[stack]", options: .DirectionLeadingToTrailing, metrics: nil, views: ["stack": stack!])
+                let horizontal = NSLayoutConstraint.constraints(withVisualFormat: "H:|-10-[stack]-10-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["stack": stack!])
+                let vertical = NSLayoutConstraint.constraints(withVisualFormat: "V:|-30-[stack]", options: NSLayoutFormatOptions(), metrics: nil, views: ["stack": stack!])
                 
                 addConstraints(horizontal)
                 addConstraints(vertical)
@@ -72,9 +72,9 @@ public class SRTabBar: NSVisualEffectView {
     
     /// The stack view that is added to the bar.
     /// This view contains all of the items.
-    private var stack: NSStackView?
+    fileprivate var stack: NSStackView?
     
-    private var backgroundView = SRTabBarBackground()
+    fileprivate var backgroundView = SRTabBarBackground()
     
     // MARK: - Methods
     
@@ -88,10 +88,10 @@ public class SRTabBar: NSVisualEffectView {
         addSubview(backgroundView)
         
         backgroundView.translatesAutoresizingMaskIntoConstraints = false
-        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[subview]-0-|", options: .DirectionLeadingToTrailing, metrics: nil, views: ["subview": backgroundView]))
-        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[subview]-0-|", options: .DirectionLeadingToTrailing, metrics: nil, views: ["subview": backgroundView]))
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-0-[subview]-0-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["subview": backgroundView]))
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-0-[subview]-0-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["subview": backgroundView]))
         
-        state = .Inactive
+        state = .inactive
     }
 
     
@@ -100,13 +100,13 @@ public class SRTabBar: NSVisualEffectView {
      
      - parameter index: The index to add
      */
-    internal func setActive(index: Int) {
+    internal func setActive(_ index: Int) {
         guard let views = stack?.views as? [SRTabItem] else {
             Swift.print("Could not get views from stack")
             return
         }
         
-        for (current, view) in views.enumerate() {
+        for (current, view) in views.enumerated() {
             let tint = (index == current) ? tintColor : textColor
             view.setTintColor(tint)
         }
