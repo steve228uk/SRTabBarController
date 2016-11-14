@@ -49,7 +49,7 @@ open class SRTabBar: NSVisualEffectView {
             stack?.spacing = itemSpacing
             addSubview(stack!)
             
-            if [SRTabLocation.Top, SRTabLocation.Bottom].contains(location) {
+            if [SRTabLocation.top, SRTabLocation.bottom].contains(location) {
                 
                 let centerX = NSLayoutConstraint(item: stack!, attribute: .centerX, relatedBy: .equal, toItem: self, attribute: .centerX, multiplier: 1, constant: 0)
                 let centerY = NSLayoutConstraint(item: stack!, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .centerY, multiplier: 1, constant: 0)
@@ -68,7 +68,7 @@ open class SRTabBar: NSVisualEffectView {
         }
     }
     
-    internal var location: SRTabLocation = .Bottom
+    internal var location: SRTabLocation = .bottom
     
     /// The stack view that is added to the bar.
     /// This view contains all of the items.

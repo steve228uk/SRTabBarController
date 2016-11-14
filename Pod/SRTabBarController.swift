@@ -23,7 +23,7 @@ open class SRTabBarController: NSViewController, NSTabViewDelegate, SRTabItemDel
     open weak var delegate: SRTabBarDelegate?
     
     /// The location of the tab bar on the screen
-    open var tabBarLocation: SRTabLocation = .Bottom {
+    open var tabBarLocation: SRTabLocation = .bottom {
         didSet {
             loadViewFromNib()
             tabBar?.location = tabBarLocation
