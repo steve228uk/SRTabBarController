@@ -15,8 +15,8 @@ class ExampleWindowController: NSWindowController {
         
     
         window?.titlebarAppearsTransparent = true
-        window?.titleVisibility = .Hidden
-        window?.movableByWindowBackground = true
+        window?.titleVisibility = .hidden
+        window?.isMovableByWindowBackground = true
     }
 
 }
