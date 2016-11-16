@@ -8,7 +8,7 @@
 
 import Cocoa
 
-public class SRTabView: NSView {
+open class SRTabView: NSView {
 
     @IBOutlet weak var tabView: NSTabView!
     

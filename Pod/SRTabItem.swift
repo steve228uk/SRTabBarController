@@ -8,7 +8,7 @@
 
 import Cocoa
 
-public class SRTabItem: NSButton {
+open class SRTabItem: NSButton {
 
     /// The delegate for the item
     weak var delegate: SRTabItemDelegate?
@@ -27,28 +27,28 @@ public class SRTabItem: NSButton {
         self.index = index
         self.viewController = viewController
         wantsLayer = true
-        bordered = false
-        imagePosition = .ImageAbove
-        setButtonType(.MomentaryChangeButton)
+        isBordered = false
+        imagePosition = .imageAbove
+        setButtonType(.momentaryChange)
         
         if let title = viewController.title {
             attributedTitle = NSAttributedString(string: title, attributes: [
-                NSFontAttributeName: NSFont.systemFontOfSize(10),
-                NSForegroundColorAttributeName: NSColor.whiteColor()
+                NSFontAttributeName: NSFont.systemFont(ofSize: 10),
+                NSForegroundColorAttributeName: NSColor.white
             ])
         } else {
             title = ""
-            imagePosition = .ImageOnly
+            imagePosition = .imageOnly
         }
         
-        (cell as? NSButtonCell)?.highlightsBy = .NoCellMask
+        (cell as? NSButtonCell)?.highlightsBy = NSCellStyleMask()
     }
     
     required public init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    public override func viewDidMoveToSuperview() {
+    open override func viewDidMoveToSuperview() {
         super.viewDidMoveToSuperview()
         
         target = self
@@ -61,10 +61,10 @@ public class SRTabItem: NSButton {
         delegate?.tabIndexShouldChangeTo(index)
     }
     
-    func setTintColor(tint: NSColor) {
+    func setTintColor(_ tint: NSColor) {
         
         attributedTitle = NSAttributedString(string: title, attributes: [
-            NSFontAttributeName: NSFont.systemFontOfSize(10),
+            NSFontAttributeName: NSFont.systemFont(ofSize: 10),
             NSForegroundColorAttributeName: tint
         ])
         
@@ -76,7 +76,7 @@ public class SRTabItem: NSButton {
         image.lockFocus()
         tint.set()
         let imageRect = NSRect(origin: NSZeroPoint, size: image.size)
-        NSRectFillUsingOperation(imageRect, .CompositeSourceAtop)
+        NSRectFillUsingOperation(imageRect, .sourceAtop)
         image.unlockFocus()
         
         self.image = image
