@@ -1,7 +1,7 @@
 # SRTabBarController
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg?maxAge=2592000)](https://github.com/steve228uk/SRTabBarController/blob/master/LICENSE) [![CocoaPods](https://img.shields.io/cocoapods/p/SRTabBarController.svg?maxAge=2592000)](https://cocoapods.org/pods/SRTabBarController) [![CocoaPods](https://img.shields.io/cocoapods/v/SRTabBarController.svg?maxAge=2592000)](https://cocoapods.org/pods/SRTabBarController)
 
-`SRTabBarController` aims to replicate much of `UITabBarController`'s functionality for OS X. It acts as a visual tab bar for `NSTabView` and has a number of nifty features.
+`SRTabBarController` aims to replicate much of `UITabBarController`'s functionality for macOS It acts as a visual tab bar for `NSTabView` and has a number of nifty features.
 
 - Add tabs using segues right within your storyboard.
 - Set text color, tint color, bar color, and item spacing in Interface Builder.
@@ -49,9 +49,9 @@ The index here defines the position it will be displayed in the tab bar. Optiona
 
 ## Customizing SRTabBarController
 
-Alongside the settings that can be defined within Interface Builder's inspector there are also a number of options that can be set by subclassing `SRTabBarController`. The `SRTabBar` itself is actually an `NSVisualEffectsView` so it's very easy to get those translucent effects users are familiar with in OS X.
+Alongside the settings that can be defined within Interface Builder's inspector there are also a number of options that can be set by subclassing `SRTabBarController`. The `SRTabBar` itself is actually an `NSVisualEffectsView` so it's very easy to get those translucent effects users are familiar with in macOS.
 
-**Location** - To customize the location on the screen set `tabBarLocation` to `.Top`, `.Right`, `.Bottom`, or `.Left`.
+**Location** - To customize the location on the screen set `tabBarLocation` to `.top`, `.right`, `.bottom`, or `.left`.
 
 **Translucency** - To enable the visual effects turn set `tabBar?.translucent = true`.
 
