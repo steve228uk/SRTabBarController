@@ -27,21 +27,21 @@ public class SRTabItem: NSButton {
         self.index = index
         self.viewController = viewController
         wantsLayer = true
-        bordered = false
-        imagePosition = .ImageAbove
-        setButtonType(.MomentaryChangeButton)
+		isBordered = false
+		imagePosition = .imageAbove
+        setButtonType(.momentaryChange)
         
         if let title = viewController.title {
             attributedTitle = NSAttributedString(string: title, attributes: [
-                NSFontAttributeName: NSFont.systemFontOfSize(10),
-                NSForegroundColorAttributeName: NSColor.whiteColor()
+				NSAttributedStringKey.font: NSFont.systemFont(ofSize: 10),
+				NSAttributedStringKey.foregroundColor: NSColor.white
             ])
         } else {
             title = ""
-            imagePosition = .ImageOnly
+			imagePosition = .imageOnly
         }
         
-        (cell as? NSButtonCell)?.highlightsBy = .NoCellMask
+        (cell as? NSButtonCell)?.highlightsBy = .changeBackgroundCellMask
     }
     
     required public init?(coder: NSCoder) {
@@ -57,15 +57,15 @@ public class SRTabItem: NSButton {
     
     // MARK: - Actions
     
-    func buttonPressed() {
-        delegate?.tabIndexShouldChangeTo(index)
+	@objc func buttonPressed() {
+		delegate?.tabIndexShouldChangeTo(index: index)
     }
     
     func setTintColor(tint: NSColor) {
         
         attributedTitle = NSAttributedString(string: title, attributes: [
-            NSFontAttributeName: NSFont.systemFontOfSize(10),
-            NSForegroundColorAttributeName: tint
+			NSAttributedStringKey.font: NSFont.systemFont(ofSize: 10),
+			NSAttributedStringKey.foregroundColor: tint
         ])
         
         guard let image = image else {
@@ -76,7 +76,7 @@ public class SRTabItem: NSButton {
         image.lockFocus()
         tint.set()
         let imageRect = NSRect(origin: NSZeroPoint, size: image.size)
-        NSRectFillUsingOperation(imageRect, .CompositeSourceAtop)
+		__NSRectFillUsingOperation(imageRect, .sourceAtop)
         image.unlockFocus()
         
         self.image = image
