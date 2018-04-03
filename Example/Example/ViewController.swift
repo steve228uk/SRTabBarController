@@ -17,8 +17,8 @@ class ViewController: SRTabBarController {
         tabBar?.translucent = true
 //        tabBar?.backgroundColor = NSColor.darkGrayColor()
 //        tabBar?.material = .UltraDark
-		tabBar?.material = .titlebar
-		tabBar?.blendingMode = .withinWindow
+        tabBar?.material = .titlebar
+        tabBar?.blendingMode = .withinWindow
     }
 
 }

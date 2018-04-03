@@ -70,132 +70,143 @@ public class SRTabBarController: NSViewController, NSTabViewDelegate, SRTabItemD
         embedTabs()
     }
     
-    /**
-     Load the view from the NIB
-     */
-    private func loadViewFromNib() {
-        var nibObjects: NSArray?
-		Bundle(for: SRTabBarController.self).loadNibNamed(NSNib.Name(rawValue: tabBarLocation.rawValue), owner: self, topLevelObjects: &nibObjects)
-        
-        guard let objects = nibObjects else {
-            fatalError("Could not load tab bar controller")
-        }
-        
-        for object in objects {
-            guard let view = object as? SRTabView else {
-                continue
-            }
-            
-            tabBar = view.tabBar
-            tabView = view.tabView
-            self.view = view
-            
-            tabBar?.backgroundColor = barBackgroundColor
-            tabBar?.tintColor = barTintColor
-            tabBar?.textColor = barTextColor
-            tabBar?.itemSpacing = itemSpacing
-        }
-        
-    }
-    
-    
-    /**
-     Select the tab item at the specified index
-     
-     - parameter index: The index to select
-     */
-    public func selectTabAtIndex(index: Int) {
-		tabView?.selectTabViewItem(at: index)
-    }
-    
-    
-    // MARK: - Load Tabs
-    
-    /**
-     Embed the tabs defined in the storyboard
-     */
-    private func embedTabs() {
-        
-        /// MAY get rejected from the MAS
-		guard let segues = value(forKey: "segueTemplates") as? [NSObject] else {
-            print("Could not find segues")
-            return
-        }
-        
-        for segue in segues {
-			if let id = segue.value(forKey: "identifier") as? String {
-				performSegue(withIdentifier:NSStoryboardSegue.Identifier(rawValue: id), sender: self)
-            }
-        }
-        
-		tabBar?.setActive(index: currentIndex)
-        
-    }
+	open override func viewWillAppear() {
+		for item in (self.tabBar?.items)! {
+			let userInfo = ["button" : item ]
+			let area = NSTrackingArea.init( rect: item.bounds,
+											options: [NSTrackingAreaOptions.mouseEnteredAndExited, NSTrackingAreaOptions.activeAlways],
+											owner: item, userInfo: nil)
+			item.addTrackingArea(area)
+		}
+	}
 
-	override public func prepare( for segue: NSStoryboardSegue, sender: Any!) {
-        
-        guard let id = segue.identifier else {
-            print("Identifier not set")
-            return
-        }
-        
-        guard let vc = segue.destinationController as? NSViewController else {
-            print("Could not load destination view controller")
-            return
-        }
-        
-		let pieces: [String] = id.rawValue.characters.split(separator: "_").map(String.init)
-        
-        guard let index = Int(pieces[1]) else {
-            print("Could not get index from identifier")
-            return
-        }
-        
-        let item = SRTabItem(index: index, viewController: vc)
-        if pieces.count > 2 {
-			item.image = NSImage(named: NSImage.Name(rawValue: pieces[2]))
-        }
+	/**
+	Load the view from the NIB
+	*/
+	private func loadViewFromNib() {
+		var nibObjects: NSArray = []
+		Bundle(for: SRTabBarController.self).loadNibNamed(tabBarLocation.rawValue, owner: self, topLevelObjects: &nibObjects)
+
+		guard nibObjects.count != 0 else {
+			fatalError("Could not load tab bar controller")
+		}
+
+		for object in nibObjects {
+			guard let view = object as? SRTabView else {
+				continue
+			}
+
+			tabBar = view.tabBar
+			tabView = view.tabView
+			self.view = view
+
+			tabBar?.backgroundColor = barBackgroundColor
+			tabBar?.tintColor = barTintColor
+			tabBar?.textColor = barTextColor
+			tabBar?.itemSpacing = itemSpacing
+		}
+	}
+
+
+	/**
+	Select the tab item at the specified index
+
+	- parameter index: The index to select
+	*/
+	public func selectTabAtIndex(index: Int) {
+		tabView?.selectTabViewItem(at: index)
+	}
+
+
+	// MARK: - Load Tabs
+
+	/**
+	Embed the tabs defined in the storyboard
+	*/
+	private func embedTabs() {
+
+		/// MAY get rejected from the MAS
+		guard let segues = value(forKey: "segueTemplates") as? [NSObject] else {
+			print("Could not find segues")
+			return
+		}
+
+		for segue in segues {
+			if let id = segue.value(forKey: "identifier") as? String {
+				performSegue(withIdentifier: id, sender: self)
+			}
+		}
+
+		tabBar?.setActive(index: currentIndex)
+
+	}
+
+	override open func prepare( for segue: NSStoryboardSegue, sender: Any!) {
+
+		guard let id = segue.identifier else {
+			print("Identifier not set")
+			return
+		}
+
+		guard let vc = segue.destinationController as? NSViewController else {
+			print("Could not load destination view controller")
+			return
+		}
+
+		let pieces: [String] = id.characters.split(separator: "_").map(String.init)
+
+		guard let index = Int(pieces[1]) else {
+			print("Could not get index from identifier")
+			return
+		}
+
+		let item = SRTabItem(index: index, viewController: vc)
+		if pieces.count > 2 {
+			item.offImage = NSImage(named: pieces[2] + "_inactive" )
+			item.onImage = NSImage( named: pieces[2] + "_active" )
+		}
 		addTabItem(item: item)
-        
-    }
-    
-    /**
-     Add a tab item to the NSTabView and the SRTabBar
-     
-     - parameter item: The tab item to be added
-     */
-    public func addTabItem(item: SRTabItem) {
-        
-        guard let vc = item.viewController else {
-            print("View controller not set on tab item")
-            return
-        }
-        
-        let tabItem = NSTabViewItem(viewController: vc)
-        tabView?.addTabViewItem(tabItem)
-        
-        item.delegate = self
-        tabBar?.items.append(item)
-    }
-    
-    
-    // MARK: - NSTabViewDelegate
-    
+
+	}
+
+
+	/**
+	Add a tab item to the NSTabView and the SRTabBar
+
+	- parameter item: The tab item to be added
+	*/
+	public func addTabItem(item: SRTabItem) {
+
+		guard let vc = item.viewController else {
+			print("View controller not set on tab item")
+			return
+		}
+
+		let tabItem = NSTabViewItem(viewController: vc)
+		tabView?.addTabViewItem(tabItem)
+
+		item.delegate = self
+		tabBar?.items.append(item)
+	}
+
+
+	// MARK: - NSTabViewDelegate
+
 	public func tabView(_ tabView: NSTabView, didSelect tabViewItem: NSTabViewItem?) {
-        guard let item = tabViewItem else {
-            return
-        }
-        
-        currentIndex = tabView.indexOfTabViewItem(item)
+		guard let item = tabViewItem else {
+			return
+		}
+
+		currentIndex = tabView.indexOfTabViewItem(item)
 		tabBar?.setActive(index: currentIndex)
 		delegate?.tabIndexChanged(index: currentIndex)
-    }
-    
-    
-    // MARK; - SRTabItemDelegate
-    
-    func tabIndexShouldChangeTo(index: Int) {
+	}
+
+
+	// MARK; - SRTabItemDelegate
+
+	func tabIndexShouldChangeTo(index: Int) {
 		tabView?.selectTabViewItem(at: index)
-    }
-    
+	}
+
 }

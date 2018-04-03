@@ -20,7 +20,7 @@ class SRTabBarBackground: NSView {
 		super.draw(dirtyRect)
 
         backgroundColor.setFill()
-		__NSRectFill(dirtyRect)
+		NSRectFill(dirtyRect)
     }
     
 }
