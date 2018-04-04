@@ -60,16 +60,16 @@ public class SRTabBarController: NSViewController, NSTabViewDelegate, SRTabItemD
     }
     
     
-    required public init?(coder: NSCoder) {
-        super.init(coder: coder)
-        loadViewFromNib()
-    }
-    
-    public override func viewDidLoad() {
-        super.viewDidLoad()
-        embedTabs()
-    }
-    
+	required public init?(coder: NSCoder) {
+		super.init(coder: coder)
+		loadViewFromNib()
+	}
+
+	open override func viewDidLoad() {
+		super.viewDidLoad()
+		embedTabs()
+	}
+	
 	open override func viewWillAppear() {
 		for item in (self.tabBar?.items)! {
 			let userInfo = ["button" : item ]
