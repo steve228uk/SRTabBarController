@@ -8,7 +8,7 @@
 
 import Cocoa
 
-public class SRTabBarController: NSViewController, NSTabViewDelegate, SRTabItemDelegate {
+open class SRTabBarController: NSViewController, NSTabViewDelegate, SRTabItemDelegate {
     
     /// The tab bar
     public var tabBar: SRTabBar?
@@ -69,7 +69,7 @@ public class SRTabBarController: NSViewController, NSTabViewDelegate, SRTabItemD
 		super.viewDidLoad()
 		embedTabs()
 	}
-	
+
 	open override func viewWillAppear() {
 		for item in (self.tabBar?.items)! {
 			let userInfo = ["button" : item ]
