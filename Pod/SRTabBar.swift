@@ -95,21 +95,22 @@ public class SRTabBar: NSVisualEffectView {
     }
 
     
-    /**
-     Set the active item on the tab bar
-     
-     - parameter index: The index to add
-     */
-    internal func setActive(index: Int) {
-        guard let views = stack?.views as? [SRTabItem] else {
-            Swift.print("Could not get views from stack")
-            return
-        }
-        
+	/**
+	Set the active item on the tab bar
+
+	- parameter index: The index to add
+	*/
+	internal func setActive(index: Int) {
+		guard let views = stack?.views as? [SRTabItem] else {
+			Swift.print("Could not get views from stack")
+			return
+		}
+
 		for (current, view) in views.enumerated() {
-            let tint = (index == current) ? tintColor : textColor
+			let tint = (index == current) ? tintColor : textColor
+			index == current ? view.buttonOn() : view.buttonOff()
 			view.setTintColor(tint: tint)
-        }
-        
-    }
+		}
+
+	}
 }
