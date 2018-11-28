@@ -10,17 +10,17 @@ import Cocoa
 
 class SRTabBarBackground: NSView {
 
-    var backgroundColor = NSColor.blackColor() {
+    var backgroundColor = NSColor.black {
         didSet {
             needsDisplay = true
         }
     }
     
-    override func drawRect(dirtyRect: NSRect) {
-        super.drawRect(dirtyRect)
+    override func draw(_ dirtyRect: NSRect) {
+        super.draw(dirtyRect)
 
         backgroundColor.setFill()
-        NSRectFill(dirtyRect)
+        __NSRectFill(dirtyRect)
     }
     
 }
