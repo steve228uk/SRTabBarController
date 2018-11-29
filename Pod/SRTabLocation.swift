@@ -18,9 +18,8 @@ import Foundation
  */
 public enum SRTabLocation: String {
     
-    case Top = "SRTabViewTop"
-    case Right = "SRTabViewRight"
-    case Bottom = "SRTabViewBottom"
-    case Left = "SRTabViewLeft"
-    
+    case top = "SRTabViewTop"
+    case right = "SRTabViewRight"
+    case bottom = "SRTabViewBottom"
+    case left = "SRTabViewLeft"
 }
