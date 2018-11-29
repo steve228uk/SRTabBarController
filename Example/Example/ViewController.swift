@@ -13,12 +13,12 @@ class ViewController: SRTabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tabBarLocation = .Top
-        tabBar?.translucent = true
-//        tabBar?.backgroundColor = NSColor.darkGrayColor()
-//        tabBar?.material = .UltraDark
-        tabBar?.material = .titlebar
-        tabBar?.blendingMode = .withinWindow
+        tabBarLocation = .top
+        tabBar.translucent = true
+//        tabBar.backgroundColor = NSColor.darkGrayColor()
+//        tabBar.material = .UltraDark
+        tabBar.material = .titlebar
+        tabBar.blendingMode = .withinWindow
     }
 
 }

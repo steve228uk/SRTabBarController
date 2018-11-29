@@ -58,10 +58,10 @@ public class SRTabItem: NSButton {
     // MARK: - Actions
     
     @objc func buttonPressed() {
-        delegate?.tabIndexShouldChangeTo(index: index)
+        delegate?.tabIndexShouldChange(to: index)
     }
     
-    func setTintColor(tint: NSColor) {
+    func setTintColor(_ tint: NSColor) {
         
         attributedTitle = NSAttributedString(string: title, attributes: [
             NSAttributedString.Key.font: NSFont.systemFont(ofSize: 10),
@@ -69,7 +69,7 @@ public class SRTabItem: NSButton {
         ])
         
         guard let image = image else {
-            Swift.print("Item has no image")
+            NSLog("Item has no image")
             return
         }
         

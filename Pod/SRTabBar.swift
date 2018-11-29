@@ -13,7 +13,7 @@ public class SRTabBar: NSVisualEffectView {
     /// Whether or not the tab bar is translucent
     public var translucent = false {
         didSet {
-            state = (translucent) ? .active : .inactive
+            state = translucent ? .active : .inactive
             backgroundView.isHidden = translucent
         }
     }
@@ -34,7 +34,7 @@ public class SRTabBar: NSVisualEffectView {
     /// Spacing between the items
     public var itemSpacing: CGFloat = 25 {
         didSet {
-            stack?.spacing = itemSpacing
+            stack.spacing = itemSpacing
         }
     }
     
@@ -43,23 +43,23 @@ public class SRTabBar: NSVisualEffectView {
     public var items = [SRTabItem]() {
         didSet {
             
-            stack?.removeFromSuperview()
+            stack.removeFromSuperview()
             stack = NSStackView(views: items.sorted { $0.index < $1.index })
-            Swift.print(itemSpacing)
-            stack?.spacing = itemSpacing
-            addSubview(stack!)
+            NSLog("%ld", itemSpacing)
+            stack.spacing = itemSpacing
+            addSubview(stack)
             
-            if [SRTabLocation.Top, SRTabLocation.Bottom].contains(location) {
+            if [.top, .bottom].contains(location) {
                 
-                let centerX = NSLayoutConstraint(item: stack!, attribute: .centerX, relatedBy: .equal, toItem: self, attribute: .centerX, multiplier: 1, constant: 0)
-                let centerY = NSLayoutConstraint(item: stack!, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .centerY, multiplier: 1, constant: 0)
+                let centerX = NSLayoutConstraint(item: stack, attribute: .centerX, relatedBy: .equal, toItem: self, attribute: .centerX, multiplier: 1, constant: 0)
+                let centerY = NSLayoutConstraint(item: stack, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .centerY, multiplier: 1, constant: 0)
                 
                 addConstraints([centerX, centerY])
             } else {
-                stack?.alignment = .centerX
+                stack.alignment = .centerX
                 
-                let horizontal = NSLayoutConstraint.constraints(withVisualFormat: "H:|-10-[stack]-10-|", options: .directionLeadingToTrailing, metrics: nil, views: ["stack": stack!])
-                let vertical = NSLayoutConstraint.constraints(withVisualFormat: "V:|-30-[stack]", options: .directionLeadingToTrailing, metrics: nil, views: ["stack": stack!])
+                let horizontal = NSLayoutConstraint.constraints(withVisualFormat: "H:|-10-[stack]-10-|", options: .directionLeadingToTrailing, metrics: nil, views: ["stack": stack])
+                let vertical = NSLayoutConstraint.constraints(withVisualFormat: "V:|-30-[stack]", options: .directionLeadingToTrailing, metrics: nil, views: ["stack": stack])
                 
                 addConstraints(horizontal)
                 addConstraints(vertical)
@@ -68,11 +68,11 @@ public class SRTabBar: NSVisualEffectView {
         }
     }
     
-    internal var location: SRTabLocation = .Bottom
+    internal var location: SRTabLocation = .bottom
     
     /// The stack view that is added to the bar.
     /// This view contains all of the items.
-    private var stack: NSStackView?
+    private var stack = NSStackView(views: [])
     
     private var backgroundView = SRTabBarBackground()
     
@@ -101,14 +101,14 @@ public class SRTabBar: NSVisualEffectView {
      - parameter index: The index to add
      */
     internal func setActive(index: Int) {
-        guard let views = stack?.views as? [SRTabItem] else {
-            Swift.print("Could not get views from stack")
+        guard let views = stack.views as? [SRTabItem] else {
+            NSLog("Could not get views from stack")
             return
         }
         
         for (current, view) in views.enumerated() {
             let tint = (index == current) ? tintColor : textColor
-            view.setTintColor(tint: tint)
+            view.setTintColor(tint)
         }
         
     }

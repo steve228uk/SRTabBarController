@@ -15,6 +15,5 @@ protocol SRTabItemDelegate: NSObjectProtocol {
      
      - parameter index: The index of the item clicked
      */
-    func tabIndexShouldChangeTo(index: Int)
-    
+    func tabIndexShouldChange(to index: Int)
 }

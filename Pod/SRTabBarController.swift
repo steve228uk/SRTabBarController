@@ -11,10 +11,16 @@ import Cocoa
 open class SRTabBarController: NSViewController, NSTabViewDelegate, SRTabItemDelegate {
     
     /// The tab bar
-    open var tabBar: SRTabBar?
+    open var tabBar: SRTabBar {
+        
+        return (view as! SRTabView).tabBar
+    }
     
     /// The tab view that is being used behind the scenes
-    open var tabView: NSTabView?
+    open var tabView: NSTabView {
+        
+        return (view as! SRTabView).tabView
+    }
     
     /// The currently selected tab index
     open var currentIndex = 0
@@ -23,46 +29,53 @@ open class SRTabBarController: NSViewController, NSTabViewDelegate, SRTabItemDel
     open weak var delegate: SRTabBarDelegate?
     
     /// The location of the tab bar on the screen
-    open var tabBarLocation: SRTabLocation = .Bottom {
+    open var tabBarLocation: SRTabLocation = .bottom {
         didSet {
             loadViewFromNib()
-            tabBar?.location = tabBarLocation
+            tabBar.location = tabBarLocation
             embedTabs()
         }
     }
     
     /// The background color of the tab bar
-    @IBInspectable open var barBackgroundColor: NSColor = NSColor.black {
+    @IBInspectable open var barBackgroundColor: NSColor = .black {
         didSet {
-            tabBar?.backgroundColor = barBackgroundColor
+            tabBar.backgroundColor = barBackgroundColor
         }
     }
     
     /// The text color of the tab bar 
-    @IBInspectable open var barTextColor: NSColor = NSColor.white {
+    @IBInspectable open var barTextColor: NSColor = .white {
         didSet {
-            tabBar?.textColor = barTextColor
+            tabBar.textColor = barTextColor
         }
     }
     
     /// The tint color of the tab bar
-    @IBInspectable open var barTintColor: NSColor = NSColor.yellow {
+    @IBInspectable open var barTintColor: NSColor = .yellow {
         didSet {
-            tabBar?.tintColor = barTintColor
+            tabBar.tintColor = barTintColor
         }
     }
     
     /// The spacing between items on the tab bar
     @IBInspectable public var itemSpacing: CGFloat = 25 {
         didSet {
-            tabBar?.itemSpacing = itemSpacing
+            tabBar.itemSpacing = itemSpacing
         }
     }
     
     
     required public init?(coder: NSCoder) {
+        
         super.init(coder: coder)
+        
         loadViewFromNib()
+        
+        tabBar.backgroundColor = barBackgroundColor
+        tabBar.tintColor = barTintColor
+        tabBar.textColor = barTextColor
+        tabBar.itemSpacing = itemSpacing
     }
     
     open override func viewDidLoad() {
@@ -80,34 +93,31 @@ open class SRTabBarController: NSViewController, NSTabViewDelegate, SRTabItemDel
         guard let objects = nibObjects else {
             fatalError("Could not load tab bar controller")
         }
-        
-        for object in objects {
-            guard let view = object as? SRTabView else {
-                continue
-            }
-            
-            tabBar = view.tabBar
-            tabView = view.tabView
-            self.view = view
-            
-            tabBar?.backgroundColor = barBackgroundColor
-            tabBar?.tintColor = barTintColor
-            tabBar?.textColor = barTextColor
-            tabBar?.itemSpacing = itemSpacing
+
+        guard let view = objects.compactMap({ $0 as? SRTabView }).first else {
+            fatalError("Could not load tab view")
         }
-        
+
+        self.view = view
+            
+        tabBar.backgroundColor = barBackgroundColor
+        tabBar.tintColor = barTintColor
+        tabBar.textColor = barTextColor
+        tabBar.itemSpacing = itemSpacing
     }
-    
     
     /**
      Select the tab item at the specified index
      
      - parameter index: The index to select
      */
-    open func selectTabAtIndex(index: Int) {
-        tabView?.selectTabViewItem(at: index)
+    open func selectTab(at index: Int) {
+        tabView.selectTabViewItem(at: index)
     }
-    
+
+    @available(*, unavailable, renamed: "selectTab(at:)")
+    open func selectTabAtIndex(index: Int) { fatalError("\(#function) is no longer available.") }
+
     
     // MARK: - Load Tabs
     
@@ -128,8 +138,7 @@ open class SRTabBarController: NSViewController, NSTabViewDelegate, SRTabItemDel
             }
         }
         
-        tabBar?.setActive(index: currentIndex)
-        
+        tabBar.setActive(index: currentIndex)
     }
 
     open override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
@@ -144,7 +153,7 @@ open class SRTabBarController: NSViewController, NSTabViewDelegate, SRTabItemDel
             return
         }
         
-        let pieces: [String] = id.split(separator: "_").map(String.init)
+        let pieces = id.split(separator: "_")
         
         
         
@@ -155,9 +164,9 @@ open class SRTabBarController: NSViewController, NSTabViewDelegate, SRTabItemDel
         
         let item = SRTabItem(index: index, viewController: vc)
         if pieces.count > 2 {
-            item.image = NSImage(named: pieces[2])
+            item.image = NSImage(named: String(pieces[2]))
         }
-        addTabItem(item: item)
+        add(tabItem: item)
         
     }
     
@@ -166,7 +175,7 @@ open class SRTabBarController: NSViewController, NSTabViewDelegate, SRTabItemDel
      
      - parameter item: The tab item to be added
      */
-    open func addTabItem(item: SRTabItem) {
+    open func add(tabItem item: SRTabItem) {
         
         guard let vc = item.viewController else {
             print("View controller not set on tab item")
@@ -174,12 +183,14 @@ open class SRTabBarController: NSViewController, NSTabViewDelegate, SRTabItemDel
         }
         
         let tabItem = NSTabViewItem(viewController: vc)
-        tabView?.addTabViewItem(tabItem)
+        tabView.addTabViewItem(tabItem)
         
         item.delegate = self
-        tabBar?.items.append(item)
+        tabBar.items.append(item)
     }
     
+    @available(*, unavailable, renamed: "add(tabItem:)")
+    open func addTabItem(item: SRTabItem) { fatalError("\(#function) is no longer available.") }
     
     // MARK: - NSTabViewDelegate
     
@@ -189,15 +200,14 @@ open class SRTabBarController: NSViewController, NSTabViewDelegate, SRTabItemDel
         }
         
         currentIndex = tabView.indexOfTabViewItem(item)
-        tabBar?.setActive(index: currentIndex)
+        tabBar.setActive(index: currentIndex)
         delegate?.tabIndexChanged(index: currentIndex)
     }
     
     
     // MARK; - SRTabItemDelegate
     
-    func tabIndexShouldChangeTo(index: Int) {
-        tabView?.selectTabViewItem(at: index)
+    func tabIndexShouldChange(to index: Int) {
+        tabView.selectTabViewItem(at: index)
     }
-    
 }
