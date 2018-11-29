@@ -69,7 +69,7 @@ public class SRTabItem: NSButton {
         ])
         
         guard let image = image else {
-            NSLog("Item has no image")
+            print("Item has no image")
             return
         }
         

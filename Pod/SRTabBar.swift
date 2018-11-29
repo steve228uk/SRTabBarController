@@ -45,7 +45,7 @@ public class SRTabBar: NSVisualEffectView {
             
             stack.removeFromSuperview()
             stack = NSStackView(views: items.sorted { $0.index < $1.index })
-            NSLog("%ld", itemSpacing)
+            print(itemSpacing)
             stack.spacing = itemSpacing
             addSubview(stack)
             
@@ -102,7 +102,7 @@ public class SRTabBar: NSVisualEffectView {
      */
     internal func setActive(index: Int) {
         guard let views = stack.views as? [SRTabItem] else {
-            NSLog("Could not get views from stack")
+            print("Could not get views from stack")
             return
         }
         
