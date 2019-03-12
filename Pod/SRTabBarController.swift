@@ -14,7 +14,7 @@ open class SRTabBarController: NSViewController, NSTabViewDelegate, SRTabItemDel
     public var tabBar: SRTabBar?
     
     /// The tab view that is being used behind the scenes
-    private var tabView: NSTabView?
+    public var tabView: NSTabView?
     
     /// The currently selected tab index
     public var currentIndex = 0
@@ -207,6 +207,7 @@ open class SRTabBarController: NSViewController, NSTabViewDelegate, SRTabItemDel
 
 	func tabIndexShouldChangeTo(index: Int) {
 		tabView?.selectTabViewItem(at: index)
+        delegate?.tabIndexShouldChange(index: index)
 	}
 
 }

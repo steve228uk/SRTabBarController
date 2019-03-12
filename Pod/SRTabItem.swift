@@ -64,7 +64,7 @@ public class SRTabItem: NSButton {
 		delegate?.tabIndexShouldChangeTo(index: index)
 	}
 
-	func setTintColor(tint: NSColor) {
+	public func setTintColor(tint: NSColor) {
 
 		attributedTitle = NSAttributedString(string: title, attributes: [
 			NSFontAttributeName: NSFont.systemFont(ofSize: 10),
@@ -86,11 +86,11 @@ public class SRTabItem: NSButton {
 	}
 
 
-	func buttonOn() {
+	public func buttonOn() {
 		self.image = onImage
 	}
 
-	func buttonOff() {
+	public func buttonOff() {
 		self.image = offImage
 	}
 
