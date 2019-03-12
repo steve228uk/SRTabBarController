@@ -11,6 +11,13 @@ import Cocoa
 public protocol SRTabBarDelegate: NSObjectProtocol {
     
     /**
+     Called before the index of the active tab will changed
+     
+     - parameter index: The index the tab changed to
+     */
+    func tabIndexShouldChange(index: Int)
+    
+    /**
      Called when the index of the active tab has changed
      
      - parameter index: The index the tab changed to

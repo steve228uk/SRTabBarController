@@ -59,10 +59,10 @@ public class SRTabBar: NSVisualEffectView {
 				stack?.alignment = .centerX
                 
 				let horizontal = NSLayoutConstraint.constraints(withVisualFormat: "H:|-10-[stack]-10-|", options: .directionLeadingToTrailing, metrics: nil, views: ["stack": stack!])
-				let vertical = NSLayoutConstraint.constraints(withVisualFormat: "V:|-30-[stack]", options: .directionLeadingToTrailing, metrics: nil, views: ["stack": stack!])
+//                let vertical = NSLayoutConstraint.constraints(withVisualFormat: "V:|-30-[stack]", options: .directionLeadingToTrailing, metrics: nil, views: ["stack": stack!])
                 
                 addConstraints(horizontal)
-                addConstraints(vertical)
+//                addConstraints(vertical)
             }
         
         }
