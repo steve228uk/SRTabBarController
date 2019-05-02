@@ -35,10 +35,10 @@ public class SRTabItem: NSButton {
 		setButtonType(.momentaryChange)
 
 		if let title = viewController.title {
-			attributedTitle = NSAttributedString(string: title, attributes: [
-				NSFontAttributeName: NSFont.systemFont(ofSize: 10),
-				NSForegroundColorAttributeName: NSColor.blue
-				])
+			attributedTitle = NSAttributedString(string: title, attributes: convertToOptionalNSAttributedStringKeyDictionary([
+				convertFromNSAttributedStringKey(NSAttributedString.Key.font): NSFont.systemFont(ofSize: 10),
+				convertFromNSAttributedStringKey(NSAttributedString.Key.foregroundColor): NSColor.blue
+				]))
 		} else {
 			title = ""
 			imagePosition = .imageOnly
@@ -64,12 +64,12 @@ public class SRTabItem: NSButton {
 		delegate?.tabIndexShouldChangeTo(index: index)
 	}
 
-	func setTintColor(tint: NSColor) {
+	public func setTintColor(tint: NSColor) {
 
-		attributedTitle = NSAttributedString(string: title, attributes: [
-			NSFontAttributeName: NSFont.systemFont(ofSize: 10),
-			NSForegroundColorAttributeName: tint
-			])
+		attributedTitle = NSAttributedString(string: title, attributes: convertToOptionalNSAttributedStringKeyDictionary([
+			convertFromNSAttributedStringKey(NSAttributedString.Key.font): NSFont.systemFont(ofSize: 10),
+			convertFromNSAttributedStringKey(NSAttributedString.Key.foregroundColor): tint
+			]))
 
 		guard let image = image else {
 			Swift.print("Item has no image")
@@ -79,18 +79,18 @@ public class SRTabItem: NSButton {
 		image.lockFocus()
 		tint.set()
 		let imageRect = NSRect(origin: NSZeroPoint, size: image.size)
-		NSRectFillUsingOperation(imageRect, .sourceAtop)
+        __NSRectFillUsingOperation(imageRect, .sourceAtop)
 		image.unlockFocus()
 
 		self.image = image
 	}
 
 
-	func buttonOn() {
+	public func buttonOn() {
 		self.image = onImage
 	}
 
-	func buttonOff() {
+	public func buttonOff() {
 		self.image = offImage
 	}
 
@@ -103,4 +103,15 @@ public class SRTabItem: NSButton {
 	}
 
 
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertToOptionalNSAttributedStringKeyDictionary(_ input: [String: Any]?) -> [NSAttributedString.Key: Any]? {
+	guard let input = input else { return nil }
+	return Dictionary(uniqueKeysWithValues: input.map { key, value in (NSAttributedString.Key(rawValue: key), value)})
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromNSAttributedStringKey(_ input: NSAttributedString.Key) -> String {
+	return input.rawValue
 }

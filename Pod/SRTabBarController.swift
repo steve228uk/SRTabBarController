@@ -14,10 +14,14 @@ open class SRTabBarController: NSViewController, NSTabViewDelegate, SRTabItemDel
     public var tabBar: SRTabBar?
     
     /// The tab view that is being used behind the scenes
-    private var tabView: NSTabView?
+    public var tabView: NSTabView?
     
     /// The currently selected tab index
     public var currentIndex = 0
+    
+    /// The tab index used to be obtained from the identifier which would result in fixed order.
+    /// To maintain it dynamic, we have this variable.
+    public var tabIndex = 0
     
     /// The delegate for the controller
     public weak var delegate: SRTabBarDelegate?
@@ -71,10 +75,10 @@ open class SRTabBarController: NSViewController, NSTabViewDelegate, SRTabItemDel
 	}
 
 	open override func viewWillAppear() {
+        super.viewWillAppear()
 		for item in (self.tabBar?.items)! {
-			let userInfo = ["button" : item ]
 			let area = NSTrackingArea.init( rect: item.bounds,
-											options: [NSTrackingAreaOptions.mouseEnteredAndExited, NSTrackingAreaOptions.activeAlways],
+											options: [NSTrackingArea.Options.mouseEnteredAndExited, NSTrackingArea.Options.activeAlways],
 											owner: item, userInfo: nil)
 			item.addTrackingArea(area)
 		}
@@ -85,7 +89,7 @@ open class SRTabBarController: NSViewController, NSTabViewDelegate, SRTabItemDel
 	*/
 	private func loadViewFromNib() {
 		var nibObjects: NSArray = []
-		Bundle(for: SRTabBarController.self).loadNibNamed(tabBarLocation.rawValue, owner: self, topLevelObjects: &nibObjects)
+		Bundle(for: SRTabBarController.self).loadNibNamed(tabBarLocation.rawValue, owner: self, topLevelObjects: AutoreleasingUnsafeMutablePointer(&nibObjects))
 
 		guard nibObjects.count != 0 else {
 			fatalError("Could not load tab bar controller")
@@ -119,6 +123,20 @@ open class SRTabBarController: NSViewController, NSTabViewDelegate, SRTabItemDel
 
 
 	// MARK: - Load Tabs
+    
+    /**
+     The default imlementation is loading all the tabs as defined in the storyboard (order of the segues).
+     Hub app overrides this method to change the order of the tabs
+     */
+    open func setUpTabs(_ segues: [NSObject]) {
+        
+        for segue in segues {
+            if let id = segue.value(forKey: "identifier") as? String {
+                performSegue(withIdentifier: id, sender: self)
+                tabIndex += 1
+            }
+        }
+    }
 
 	/**
 	Embed the tabs defined in the storyboard
@@ -131,12 +149,8 @@ open class SRTabBarController: NSViewController, NSTabViewDelegate, SRTabItemDel
 			return
 		}
 
-		for segue in segues {
-			if let id = segue.value(forKey: "identifier") as? String {
-				performSegue(withIdentifier: id, sender: self)
-			}
-		}
-
+        tabIndex = 0
+        setUpTabs(segues)
 		tabBar?.setActive(index: currentIndex)
 
 	}
@@ -153,14 +167,8 @@ open class SRTabBarController: NSViewController, NSTabViewDelegate, SRTabItemDel
 			return
 		}
 
-		let pieces: [String] = id.characters.split(separator: "_").map(String.init)
-
-		guard let index = Int(pieces[1]) else {
-			print("Could not get index from identifier")
-			return
-		}
-
-		let item = SRTabItem(index: index, viewController: vc)
+        let pieces: [String] = id.substring(to: id.endIndex).split(separator: "_").map(String.init)
+        let item = SRTabItem(index: tabIndex, viewController: vc)
 		if pieces.count > 2 {
 			item.offImage = NSImage(named: pieces[2] + "_inactive" )
 			item.onImage = NSImage( named: pieces[2] + "_active" )
@@ -206,6 +214,7 @@ open class SRTabBarController: NSViewController, NSTabViewDelegate, SRTabItemDel
 	// MARK; - SRTabItemDelegate
 
 	func tabIndexShouldChangeTo(index: Int) {
+        delegate?.tabIndexShouldChange(index: index)
 		tabView?.selectTabViewItem(at: index)
 	}
 
