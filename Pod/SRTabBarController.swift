@@ -77,9 +77,9 @@ open class SRTabBarController: NSViewController, NSTabViewDelegate, SRTabItemDel
 	open override func viewWillAppear() {
         super.viewWillAppear()
 		for item in (self.tabBar?.items)! {
-            let area = NSTrackingArea(rect: item.bounds,
-                                      options: [.mouseEnteredAndExited, .activeAlways],
-                                      owner: item, userInfo: nil)
+			let area = NSTrackingArea.init( rect: item.bounds,
+											options: [NSTrackingArea.Options.mouseEnteredAndExited, NSTrackingArea.Options.activeAlways],
+											owner: item, userInfo: nil)
 			item.addTrackingArea(area)
 		}
 	}
@@ -89,7 +89,7 @@ open class SRTabBarController: NSViewController, NSTabViewDelegate, SRTabItemDel
 	*/
 	private func loadViewFromNib() {
 		var nibObjects: NSArray = []
-		Bundle(for: SRTabBarController.self).loadNibNamed(tabBarLocation.rawValue, owner: self, topLevelObjects: &nibObjects)
+		Bundle(for: SRTabBarController.self).loadNibNamed(tabBarLocation.rawValue, owner: self, topLevelObjects: AutoreleasingUnsafeMutablePointer(&nibObjects))
 
 		guard nibObjects.count != 0 else {
 			fatalError("Could not load tab bar controller")
