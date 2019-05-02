@@ -87,8 +87,8 @@ open class SRTabBarController: NSViewController, NSTabViewDelegate, SRTabItemDel
 	/**
 	Load the view from the NIB
 	*/
+    var nibObjects: NSArray = []
 	private func loadViewFromNib() {
-		var nibObjects: NSArray = []
 		Bundle(for: SRTabBarController.self).loadNibNamed(tabBarLocation.rawValue, owner: self, topLevelObjects: AutoreleasingUnsafeMutablePointer(&nibObjects))
 
 		guard nibObjects.count != 0 else {
