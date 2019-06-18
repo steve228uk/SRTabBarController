@@ -168,7 +168,7 @@ open class SRTabBarController: NSViewController, NSTabViewDelegate, SRTabItemDel
 			return
 		}
 
-        let pieces: [String] = id.substring(to: id.endIndex).split(separator: "_").map(String.init)
+        let pieces: [String] = id.components(separatedBy: "_")
         let item = SRTabItem(index: tabIndex, viewController: vc)
 		if pieces.count > 2 {
 			item.offImage = NSImage(named: pieces[2] + "_inactive" )
@@ -198,6 +198,11 @@ open class SRTabBarController: NSViewController, NSTabViewDelegate, SRTabItemDel
 		tabBar?.items.append(item)
 	}
 
+    public func reloadBranding() {
+        tabBar?.tintColor = barTintColor
+        tabBar?.textColor = barTextColor
+        tabBar?.setActive(index: currentIndex)
+    }
 
 	// MARK: - NSTabViewDelegate
 
