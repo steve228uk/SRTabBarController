@@ -35,10 +35,9 @@ public class SRTabItem: NSButton {
 		setButtonType(.momentaryChange)
 
 		if let title = viewController.title {
-			attributedTitle = NSAttributedString(string: title, attributes: convertToOptionalNSAttributedStringKeyDictionary([
-				convertFromNSAttributedStringKey(NSAttributedString.Key.font): NSFont.systemFont(ofSize: 10),
-				convertFromNSAttributedStringKey(NSAttributedString.Key.foregroundColor): NSColor.blue
-				]))
+            attributedTitle = NSAttributedString(string: title,
+                                                 attributes: [.font: NSFont.systemFont(ofSize: 10),
+                                                              .foregroundColor: NSColor.blue])
 		} else {
 			title = ""
 			imagePosition = .imageOnly
@@ -66,10 +65,9 @@ public class SRTabItem: NSButton {
 
 	public func setTintColor(tint: NSColor) {
 
-		attributedTitle = NSAttributedString(string: title, attributes: convertToOptionalNSAttributedStringKeyDictionary([
-			convertFromNSAttributedStringKey(NSAttributedString.Key.font): NSFont.systemFont(ofSize: 10),
-			convertFromNSAttributedStringKey(NSAttributedString.Key.foregroundColor): tint
-			]))
+        attributedTitle = NSAttributedString(string: title,
+                                             attributes: [.font: NSFont.systemFont(ofSize: 10),
+                                                          .foregroundColor: tint])
 
 		guard let image = image else {
 			Swift.print("Item has no image")
@@ -103,15 +101,4 @@ public class SRTabItem: NSButton {
 	}
 
 
-}
-
-// Helper function inserted by Swift 4.2 migrator.
-fileprivate func convertToOptionalNSAttributedStringKeyDictionary(_ input: [String: Any]?) -> [NSAttributedString.Key: Any]? {
-	guard let input = input else { return nil }
-	return Dictionary(uniqueKeysWithValues: input.map { key, value in (NSAttributedString.Key(rawValue: key), value)})
-}
-
-// Helper function inserted by Swift 4.2 migrator.
-fileprivate func convertFromNSAttributedStringKey(_ input: NSAttributedString.Key) -> String {
-	return input.rawValue
 }
