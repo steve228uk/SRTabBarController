@@ -105,6 +105,11 @@ public class SRTabBar: NSVisualEffectView {
 			Swift.print("Could not get views from stack")
 			return
 		}
+        
+        guard index >= 0 else {
+            Swift.print("Index is less than 0")
+            return
+        }
 
 		for (current, view) in views.enumerated() {
 			let tint = (index == current) ? tintColor : textColor
