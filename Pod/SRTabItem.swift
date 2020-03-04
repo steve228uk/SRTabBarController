@@ -16,12 +16,17 @@ public class SRTabItem: NSButton {
 	/// The index of the item on the bar
 	var index = 0
 
-	var onImage : NSImage? = nil
-	var offImage : NSImage? = nil
+	public var onImage : NSImage? = nil
+	public var offImage : NSImage? = nil
 
 	/// The view controller associated with this item
 	public var viewController: NSViewController?
 
+    private var tintColor: NSColor = NSColor.blue
+    public var fontAttr: [NSAttributedString.Key : Any] {
+        return [.font: NSFont.systemFont(ofSize: 15, weight: .semibold), .foregroundColor: tintColor]
+    }
+    
 	// MARK: - Initializers
 
 	init(index: Int, viewController: NSViewController) {
@@ -31,13 +36,14 @@ public class SRTabItem: NSButton {
 		self.viewController = viewController
 		wantsLayer = true
 		isBordered = false
-		imagePosition = .imageAbove
+		imagePosition = .imageLeft
+        alignment = .left
 		setButtonType(.momentaryChange)
-
+        imageHugsTitle = true
+        cell?.backgroundStyle = .normal
+        
 		if let title = viewController.title {
-            attributedTitle = NSAttributedString(string: title,
-                                                 attributes: [.font: NSFont.systemFont(ofSize: 10),
-                                                              .foregroundColor: NSColor.blue])
+            attributedTitle = NSAttributedString(string: title, attributes: fontAttr)
 		} else {
 			title = ""
 			imagePosition = .imageOnly
@@ -64,10 +70,8 @@ public class SRTabItem: NSButton {
 	}
 
 	public func setTintColor(tint: NSColor) {
-
-        attributedTitle = NSAttributedString(string: title,
-                                             attributes: [.font: NSFont.systemFont(ofSize: 10),
-                                                          .foregroundColor: tint])
+        self.tintColor = tint
+        attributedTitle = NSAttributedString(string: title, attributes: fontAttr)
 
 		guard let image = image else {
 			Swift.print("Item has no image")
@@ -86,10 +90,12 @@ public class SRTabItem: NSButton {
 
 	public func buttonOn() {
 		self.image = onImage
+        self.layer?.backgroundColor = NSColor(calibratedRed: 0.153, green: 0.153, blue: 0.153, alpha: 0.2).cgColor
 	}
 
 	public func buttonOff() {
 		self.image = offImage
+        self.layer?.backgroundColor = NSColor(calibratedRed: 0.0, green: 0.0, blue: 0.0, alpha: 0.0).cgColor
 	}
 
 	override open func mouseEntered(with event: NSEvent) {
