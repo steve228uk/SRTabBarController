@@ -21,7 +21,7 @@ Behind the scenes `SRTabBarController` uses `NSTabView` to manage the tabs and m
   s.source           = { :git => "https://github.com/steve228uk/SRTabBarController.git", :tag => s.version.to_s }
   s.social_media_url = 'https://twitter.com/steve228uk'
 
-  s.osx.deployment_target = '10.10'
+  s.osx.deployment_target = '10.12'
 
   s.source_files = 'Pod/**/*'
 

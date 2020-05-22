@@ -1,8 +1,9 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="15705" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="10117"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15705"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner"/>
@@ -13,17 +14,16 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <tabView drawsBackground="NO" allowsTruncatedLabels="NO" type="noTabsNoBorder" translatesAutoresizingMaskIntoConstraints="NO" id="yTt-GK-FtF">
-                    <rect key="frame" x="66" y="0.0" width="414" height="272"/>
+                    <rect key="frame" x="194" y="0.0" width="286" height="272"/>
                     <font key="font" metaFont="system"/>
-                    <tabViewItems/>
                     <connections>
                         <outlet property="delegate" destination="-2" id="VNa-Hh-aJ6"/>
                     </connections>
                 </tabView>
                 <customView translatesAutoresizingMaskIntoConstraints="NO" id="vOc-F2-lJn" customClass="SRTabBar" customModule="Example" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="0.0" width="66" height="272"/>
+                    <rect key="frame" x="0.0" y="0.0" width="194" height="272"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="66" id="RU3-89-TIj"/>
+                        <constraint firstAttribute="width" constant="194" id="RU3-89-TIj"/>
                     </constraints>
                 </customView>
             </subviews>
@@ -40,6 +40,7 @@
                 <outlet property="tabBar" destination="vOc-F2-lJn" id="h2d-ee-nBd"/>
                 <outlet property="tabView" destination="yTt-GK-FtF" id="Tz4-Er-MMh"/>
             </connections>
+            <point key="canvasLocation" x="139" y="154"/>
         </customView>
     </objects>
 </document>
